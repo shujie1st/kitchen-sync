@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS user_recipes CASCADE;
+CREATE TABLE user_recipes (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  recipe_link VARCHAR(2083), 
+  recipe_img NVARCHAR(2083),
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+)
