@@ -8,7 +8,7 @@ $ git pull origin main
 $ git branch BRANCHNAME
 $ git checkout BRANCHNAME
 $ git commit -m “”
-$ git push -u BRANCHNAME
+$ git push -u origin BRANCHNAME
 $ git checkout origin main
 Go to github to solve conflicts, pull & merge
 Delete branch once merge is successful
