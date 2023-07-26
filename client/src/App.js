@@ -3,6 +3,7 @@ import Ingredient from './components/Ingredient';
 import Recipe from './components/Recipe';
 import Filter from './components/Filter';
 import './App.css';
+import Preference from './components/Preference';
 
 function App() {
   return (
@@ -10,7 +11,10 @@ function App() {
       <Navigation />
       <main className="container">
         <Ingredient />
-        <Recipe />
+        <div className="container-center">
+          <Preference />
+          <Recipe />
+        </div>
         <Filter />
       </main> 
     </div>
