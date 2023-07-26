@@ -1,6 +1,0 @@
-DROP TABLE IF EXISTS user_preferences CASCADE;
-CREATE TABLE user_preferences (
-  id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  preference_id INTEGER REFERENCES preferences(id) ON DELETE CASCADE
-);
