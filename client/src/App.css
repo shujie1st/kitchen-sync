@@ -39,6 +39,10 @@ nav {
   text-align: center;
 }
 
+.search {
+  border: none;
+}
+
 .filters {
 	width: 15%;
   border: 2px solid aqua;
