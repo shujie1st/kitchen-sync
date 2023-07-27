@@ -39,6 +39,12 @@ nav {
   text-align: center;
 }
 
+.search {
+  border: none;
+  width: inherient;
+}
+
+
 .filters {
 	width: 15%;
   border: 2px solid aqua;
