@@ -1,3 +1,4 @@
+import RecipeCard from "./RecipeCard";
 import { useRef } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
@@ -17,27 +18,33 @@ function Recipe(){
       .then(data => console.log(data))
   };
 
-  return ( 
-      <section className="mt-5 recipes">
-        <Container className="search">
-      <Row>
-        <Col sm={4}>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search recipes"
-              className="me-2"
-              aria-label="Search"
-              ref={inputElement}
-            />
-            <Button onClick={searchRecipes}>
-              Search
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+  return (
+    <section className="recipes">
+
+      <Container className="search">
+        <Row>
+          <Col sm={4}>
+            <Form className="d-flex">
+              <Form.Control
+                type="search"
+                placeholder="Search recipes"
+                className="me-2"
+                aria-label="Search"
+                ref={inputElement}
+              />
+              <Button onClick={searchRecipes}>
+                Search
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+      
+      <section className="recipe-cards">
+        <RecipeCard />
       </section>
+
+    </section>
   );
 }
 
