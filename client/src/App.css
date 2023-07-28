@@ -44,6 +44,28 @@ nav {
   width: inherient;
 }
 
+.recipe-card {
+  display: flex;
+  border: 1px solid grey;
+  flex-direction: row;
+  align-items: center;
+  width: 17rem;
+  gap: 10px;
+}
+
+.recipe-card .card-title {
+  font-weight: 600;
+}
+
+.dish-type {
+  color: grey;
+  font-size: small;
+}
+
+.recipe-link {
+  font-size: x-small;
+  font-style: italic;
+}
 
 .filters {
 	width: 15%;
