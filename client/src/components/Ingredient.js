@@ -7,7 +7,7 @@ const Ingredient = () => {
 
   const getIngredients = async () => {
     try {
-      const response = await fetch('http://localhost:3001/ingredients')
+      const response = await fetch(`http://localhost:3001/ingredients`)
       const jsonData = await response.json()
       console.log("jsonData: ", jsonData)
       setIngredients(jsonData);
