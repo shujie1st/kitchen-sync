@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 const Ingredient = (props) => {
-  const { onSetSelectedIngredients } = props
+  const { getSelectedIngredients } = props
 
+  // database ingredients
   const [ingredients, setIngredients] = useState([]);
+  // user selected ingredients
   const [selectedIngredients, setSelectedIngredients] = useState([]);
 
   // fetch ingredients from database
@@ -19,8 +21,12 @@ const Ingredient = (props) => {
 
   // select ingredients for Filter component
   const handleIngredientClick = (ingredientName) => {
+    // check if ingredient has already been selected
     if (!selectedIngredients.includes(ingredientName)) {
       setSelectedIngredients([...selectedIngredients, ingredientName])
+
+      // callback to send data up to parent App component
+      getSelectedIngredients(selectedIngredients)
     }
   };
 
