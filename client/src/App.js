@@ -16,6 +16,7 @@ function App() {
     setSelectedIngredients(selectedIngredients)
   }
 
+
   return (
     <div className="App">
       <Navigation />

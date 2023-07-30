@@ -26,7 +26,7 @@ const Ingredient = (props) => {
       setSelectedIngredients([...selectedIngredients, ingredientName])
 
       // callback to send data up to parent App component
-      getSelectedIngredients(selectedIngredients)
+      getSelectedIngredients([...selectedIngredients, ingredientName])
     }
   };
 
