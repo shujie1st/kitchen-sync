@@ -13,7 +13,7 @@ function Recipe(){
   const apiId = process.env.REACT_APP_API_ID;
   const apiKeys = process.env.REACT_APP_API_KEYS;
 
-  const searchRecipes = (url) => {
+  const loadRecipes = (url) => {
     fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -36,7 +36,9 @@ function Recipe(){
   const searchRecipesByKeywords = () => {
     const keywords = inputElement.current.value;
     const initialUrl = `${api}&q=${keywords}&app_id=${apiId}&app_key=${apiKeys}`;
-    searchRecipes(initialUrl);
+    setRecipes([]);
+    setLoadMoreUrl("");
+    loadRecipes(initialUrl);
   }
 
   return (
@@ -68,7 +70,7 @@ function Recipe(){
       </section>
 
       <section className="load-more">
-        {loadMoreUrl && <Button onClick={() => searchRecipes(loadMoreUrl)}>Load more...</Button>}
+        {loadMoreUrl && <Button onClick={() => loadRecipes(loadMoreUrl)}>Load more...</Button>}
       </section>
 
     </section>
