@@ -2,8 +2,21 @@ nav {
 	height: 80px;
 	width: 100%;
 	display: flex;
-  justify-content: center;
+  justify-content: space-between;
   border: 2px solid royalblue;
+}
+
+.nav-text {
+  margin-left: 50px;
+  font-size: 30px;
+  align-self: center;
+}
+
+.nav-right {
+  display: flex;
+  margin-right: 20px;
+  align-self: flex-end;
+  margin-bottom: 10px;
 }
 
 .container {

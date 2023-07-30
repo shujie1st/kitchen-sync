@@ -1,7 +1,10 @@
 function Navigation(){
   return ( 
       <nav>
-       Navigation component
+        <span className="nav-text">KitchenSync</span>
+
+        <div className="nav-right">
+        </div>
       </nav>
   );
 }
