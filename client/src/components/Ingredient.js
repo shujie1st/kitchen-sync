@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 const Ingredient = (props) => {
-  const { getSelectedIngredients } = props
+  const { filteredIngredients, getSelectedIngredients } = props
 
   // database ingredients
   const [ingredients, setIngredients] = useState([]);
-  // user selected ingredients
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
+
 
   // fetch ingredients from database
   const getIngredients = async () => {
@@ -17,23 +16,20 @@ const Ingredient = (props) => {
     } catch (error) {
       console.error(error.message)
     }
-  }
+  };
 
   // select ingredients for Filter component
   const handleIngredientClick = (ingredientName) => {
     // check if ingredient has already been selected
-    if (!selectedIngredients.includes(ingredientName)) {
-      setSelectedIngredients([...selectedIngredients, ingredientName])
+    if (!filteredIngredients.includes(ingredientName)) {
+    // callback to send data up to parent App component
+    getSelectedIngredients([...filteredIngredients, ingredientName])
+  }};
 
-      // callback to send data up to parent App component
-      getSelectedIngredients([...selectedIngredients, ingredientName])
-    }
-  };
 
    useEffect(() => {
     getIngredients();
-    console.log("👉👉👉selectedIngredients: ", selectedIngredients)
-  }, [selectedIngredients]);
+  }, []);
 
 
   return ( 
@@ -48,9 +44,7 @@ const Ingredient = (props) => {
                 if (ingredient.category_id === 1) {
                   return <button key={ingredient.id} onClick={() => handleIngredientClick(ingredient.name)}>{ingredient.name}</button>;
                 }
-              })}
-            
-
+              })}            
           <h4>Fruits</h4>
               {ingredients.map(ingredient => {
                 if (ingredient.category_id === 2) {

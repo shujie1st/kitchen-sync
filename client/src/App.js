@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Ingredient from './components/Ingredient';
 import Recipe from './components/Recipe';
 import Filter from './components/Filter';
 import './App.css';
 import Preference from './components/Preference';
+
 
 function App() {
   // Pass selectedIngredients props between sibling components, Ingrdient & Filter
@@ -16,17 +17,34 @@ function App() {
     setSelectedIngredients(selectedIngredients)
   }
 
+  // callback to remove ingredients from the Filter component
+  const removeSelectedIngredient = (selectedIngredient) => {
+    // update ingredient to remove from the Ingredients component
+     setSelectedIngredients(selectedIngredient)
+
+  }
+
+  useEffect(() => {
+    console.log("👉👉👉selectedIngredients: ", selectedIngredients)
+  }, [selectedIngredients]);
+
 
   return (
     <div className="App">
       <Navigation />
       <main className="container">
-        <Ingredient getSelectedIngredients={getSelectedIngredients}/>
+        <Ingredient 
+          filteredIngredients={selectedIngredients}
+          getSelectedIngredients={getSelectedIngredients}
+        />
         <div className="container-center">
           <Preference />
           <Recipe />
         </div>
-        <Filter selectedIngredients={selectedIngredients}/>
+        <Filter 
+          filteredIngredients={selectedIngredients}
+          removeSelectedIngredient={removeSelectedIngredient} 
+        />
       </main> 
     </div>
   );
