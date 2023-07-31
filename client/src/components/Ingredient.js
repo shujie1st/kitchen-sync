@@ -26,6 +26,19 @@ const Ingredient = (props) => {
     getSelectedIngredients([...filteredIngredients, ingredientName])
   }};
 
+  const getIngredientsByCategory = (categoryID) => {
+    return ingredients.map(ingredient => {
+      if (ingredient.category_id === categoryID) {
+        return (
+          <button key={ingredient.id} onClick={() => handleIngredientClick(ingredient.name)}>
+            {ingredient.name}
+            </button>
+            );
+      }
+      return null;
+    })
+  }
+
 
    useEffect(() => {
     getIngredients();
@@ -39,46 +52,22 @@ const Ingredient = (props) => {
           <button>Search</button>
         </form>
         <div>
-          <h4>Vegetables & Greens</h4>
-            {ingredients.map(ingredient => {
-                if (ingredient.category_id === 1) {
-                  return <button key={ingredient.id} onClick={() => handleIngredientClick(ingredient.name)}>{ingredient.name}</button>;
-                }
-              })}            
+          <h4>Vegetables & Greens</h4>  
+            {getIngredientsByCategory(1)}      
           <h4>Fruits</h4>
-              {ingredients.map(ingredient => {
-                if (ingredient.category_id === 2) {
-                  return <button key={ingredient.id} onClick={() => handleIngredientClick(ingredient.name)} >{ingredient.name}</button>;
-                }
-              })}
+            {getIngredientsByCategory(2)}
 
           <h4>Dairy & Eggs</h4>
-              {ingredients.map(ingredient => {
-                if (ingredient.category_id === 3) {
-                  return <button key={ingredient.id} onClick={() => handleIngredientClick(ingredient.name)} >{ingredient.name}</button>;
-                }
-              })}
+            {getIngredientsByCategory(3)}
 
           <h4>Dairy-Free & Meat Substitutes</h4>
-                {ingredients.map(ingredient => {
-                  if (ingredient.category_id === 4) {
-                    return <button key={ingredient.id} onClick={() => handleIngredientClick(ingredient.name)} >{ingredient.name}</button>;
-                  }
-                })}
+            {getIngredientsByCategory(4)}
      
           <h4>Meats & Poultry</h4>
-              {ingredients.map(ingredient => {
-                if (ingredient.category_id === 5) {
-                  return <button key={ingredient.id} onClick={() => handleIngredientClick(ingredient.name)} >{ingredient.name}</button>;
-                }
-              })}
+            {getIngredientsByCategory(5)}
 
           <h4>Fish & Seafood ID6</h4>
-              {ingredients.map(ingredient => {
-                if (ingredient.category_id === 6) {
-                  return <button key={ingredient.id} onClick={() => handleIngredientClick(ingredient.name)} >{ingredient.name}</button>;
-                }
-              })}
+             {getIngredientsByCategory(6)}
         </div>
         
       </section>
