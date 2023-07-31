@@ -19,6 +19,23 @@ nav {
   margin-bottom: 10px;
 }
 
+.login-form {
+  padding-top: 40px;
+  padding-left: 200px;
+}
+
+#formBasicEmail {
+  width: 30%;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+#formBasicPassword {
+  width: 30%;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
 .container {
 	display: flex;
   border: 2px solid royalblue;
