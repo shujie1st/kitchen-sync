@@ -33,38 +33,61 @@ nav {
 }
 
 .recipes {
-  height: 360px;
   border: 2px solid fuchsia;
   margin: 5px;
-  text-align: center;
 }
 
 .search {
   border: none;
-  width: inherient;
+}
+
+.recipe-cards {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
 }
 
 .recipe-card {
   display: flex;
-  border: 1px solid grey;
+  border: 1px solid silver;
   flex-direction: row;
   align-items: center;
   width: 17rem;
-  gap: 10px;
+  gap: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.recipe-card .card-img-top {
+  width: 100px;
+}
+
+.recipe-body {
+  width:50%
 }
 
 .recipe-card .card-title {
-  font-weight: 600;
+  font-weight: 500;
+  font-size: small;
 }
 
 .dish-type {
   color: grey;
-  font-size: small;
+  font-size: x-small;
 }
 
 .recipe-link {
   font-size: x-small;
   font-style: italic;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+}
+
+.load-more button {
+  width: 100%;
 }
 
 .filters {

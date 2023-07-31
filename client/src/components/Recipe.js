@@ -1,22 +1,45 @@
-import RecipeCard from "./RecipeCard";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import RecipeCard from "./RecipeCard";
 
 function Recipe(){
+
+  const [recipes, setRecipes] = useState([]);
+  const [loadMoreUrl, setLoadMoreUrl] = useState("");
+
+  const inputElement = useRef();
+
   const api = process.env.REACT_APP_API;
   const apiId = process.env.REACT_APP_API_ID;
   const apiKeys = process.env.REACT_APP_API_KEYS;
 
-  const inputElement = useRef();
- 
-  const searchRecipes = () => {
-    const keywords = inputElement.current.value;
-    const url = `${api}&q=${keywords}&app_id=${apiId}&app_key=${apiKeys}`;
-
+  const loadRecipes = (url) => {
     fetch(url)
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(data => {
+        setLoadMoreUrl(data["_links"].next.href);
+        setRecipes(prev => [...prev,
+          ...data.hits.map(each => {
+            return {
+              imageLink: each.recipe.images["THUMBNAIL"].url,
+              name: each.recipe.label,
+              websiteName: each.recipe.source,
+              websiteLink: each.recipe.url,
+              dishType: each.recipe.dishType
+            }
+          })]
+        );
+      })
+      .catch(error => console.log(error))
   };
+
+  const searchRecipesByKeywords = () => {
+    const keywords = inputElement.current.value;
+    const initialUrl = `${api}&q=${keywords}&app_id=${apiId}&app_key=${apiKeys}`;
+    setRecipes([]);
+    setLoadMoreUrl("");
+    loadRecipes(initialUrl);
+  }
 
   return (
     <section className="recipes">
@@ -32,7 +55,7 @@ function Recipe(){
                 aria-label="Search"
                 ref={inputElement}
               />
-              <Button onClick={searchRecipes}>
+              <Button onClick={searchRecipesByKeywords}>
                 Search
               </Button>
             </Form>
@@ -41,7 +64,13 @@ function Recipe(){
       </Container>
       
       <section className="recipe-cards">
-        <RecipeCard />
+        {recipes.map(recipe => {
+          return <RecipeCard recipe={recipe} />
+        })}
+      </section>
+
+      <section className="load-more">
+        {loadMoreUrl && <Button onClick={() => loadRecipes(loadMoreUrl)}>Load more...</Button>}
       </section>
 
     </section>
