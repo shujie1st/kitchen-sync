@@ -5,6 +5,11 @@ const Ingredient = (props) => {
 
   // database ingredients
   const [ingredients, setIngredients] = useState([]);
+  // search
+  const [ingredientsSearch, setIngredientsSearch] = useState('')
+  // store data from search
+  const [filteredResults, setFilteredResults] = useState([]);
+
 
 
   // fetch ingredients from database
@@ -39,6 +44,21 @@ const Ingredient = (props) => {
     })
   }
 
+
+  // search ingredients
+  const handleChange = e => {
+    setIngredientsSearch(e.target.value)
+    console.log("👉👉👉ingredientsSearch: ", ingredientsSearch)
+    // filter data based on search input
+    const filteredSearchData = ingredients.filter((ingredient) => {
+      return Object.values(ingredient).join('').toLowerCase().includes(ingredientsSearch.toLowerCase())
+    })
+    // update the search to the filtered data
+    console.log("👉👉👉 filteredSearchData: ", filteredSearchData)
+    setFilteredResults(filteredSearchData)
+  };
+
+
    useEffect(() => {
     getIngredients();
   }, []);
@@ -47,8 +67,12 @@ const Ingredient = (props) => {
   return ( 
       <section className="ingredients">
         <form>
-          <input type="text" placeholder="Search ingredients"></input>
-          <button>Search</button>
+          <input 
+            type="text" 
+            placeholder="Search ingredients"
+            value={ingredientsSearch} 
+            onChange={handleChange}>
+          </input>
         </form>
         <div>
           <h4>Vegetables & Greens</h4>  
