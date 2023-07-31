@@ -39,7 +39,6 @@ const Ingredient = (props) => {
     })
   }
 
-
    useEffect(() => {
     getIngredients();
   }, []);
