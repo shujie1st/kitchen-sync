@@ -51,14 +51,12 @@ const Ingredient = (props) => {
   const handleChange = e => {
     const searchValue = e.target.value;
     setIngredientsSearch(searchValue)
-    console.log("🔎searchValue: ", searchValue)
     
     // filter data based on search input
     const filteredSearchData = ingredients.filter((ingredient) => {
       return Object.values(ingredient).join('').toLowerCase().includes(ingredientsSearch.toLowerCase())
     })
     // update the search to the filtered data
-    console.log("👉👉👉 filteredSearchData: ", filteredSearchData)
     setFilteredResults(filteredSearchData)
   };
 
@@ -108,7 +106,7 @@ const Ingredient = (props) => {
           <h4>Meats & Poultry</h4>
             {getIngredientsByCategory(5)}
 
-          <h4>Fish & Seafood ID6</h4>
+          <h4>Fish & Seafood</h4>
              {getIngredientsByCategory(6)}
         </div>
         
