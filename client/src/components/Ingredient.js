@@ -47,8 +47,9 @@ const Ingredient = (props) => {
 
   // search ingredients
   const handleChange = e => {
-    setIngredientsSearch(e.target.value)
-    console.log("👉👉👉ingredientsSearch: ", ingredientsSearch)
+    const searchValue = e.target.value;
+    setIngredientsSearch(searchValue)
+    console.log("🔎searchValue: ", searchValue)
     // filter data based on search input
     const filteredSearchData = ingredients.filter((ingredient) => {
       return Object.values(ingredient).join('').toLowerCase().includes(ingredientsSearch.toLowerCase())
