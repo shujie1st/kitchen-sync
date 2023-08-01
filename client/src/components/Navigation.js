@@ -1,15 +1,37 @@
 import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Navigation(props){
-  return ( 
-      <nav>
-        <span className="nav-text">KitchenSync</span>
+  const navigate = useNavigate();
 
-        <div className="nav-right">
-          {props.firstName && <div className="nav-welcome"><span>Welcome {props.firstName}</span><Link to="/logout">Logout</Link></div>}
-          {!props.firstName && <Link to="/login">Login</Link>}
-        </div>
-      </nav>
+  const logout = async (event) => {
+
+    try {
+      const response = await fetch("http://localhost:3001/logout", {
+        method: "POST",
+      });
+      
+      if (response.status === 200) {
+        props.setFirstName("");
+        navigate("/login");
+        console.log("Logout successful")
+      } else {
+        console.log("Logout failed");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+  return (
+    <nav>
+      <span className="nav-text">KitchenSync</span>
+
+      <div className="nav-right">
+        {props.firstName && <div className="nav-welcome"><span>Welcome {props.firstName}</span><button onClick={logout}>Logout</button></div>}
+        {!props.firstName && <Link to="/login">Login</Link>}
+      </div>
+    </nav>
   );
 }
 
