@@ -5,11 +5,15 @@ import Recipe from './components/Recipe';
 import Filter from './components/Filter';
 import './App.css';
 import Preference from './components/Preference';
+import Login from './components/Login';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
 function App() {
   // Pass selectedIngredients props between sibling components, Ingrdient & Filter
   const [selectedIngredients, setSelectedIngredients] = useState([]);
+
+  const [firstName, setFirstName] = useState("");
 
   // callback to get the selectedIngredients list form the Ingredients component
   const getSelectedIngredients = (selectedIngredients) => {
@@ -31,21 +35,28 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation />
-      <main className="container">
-        <Ingredient 
+      <BrowserRouter>
+        <Navigation firstName={firstName} setFirstName={setFirstName} />
+        <Routes>
+          <Route path="/login" element={<Login setFirstName={setFirstName} />} />
+          <Route path="/" element={
+            <main className="container">
+              <Ingredient 
           filteredIngredients={selectedIngredients}
           getSelectedIngredients={getSelectedIngredients}
         />
-        <div className="container-center">
-          <Preference />
-          <Recipe />
-        </div>
-        <Filter 
+              <div className="container-center">
+                <Preference />
+                <Recipe />
+              </div>
+              <Filter 
           filteredIngredients={selectedIngredients}
           removeSelectedIngredient={removeSelectedIngredient} 
         />
-      </main> 
+            </main> 
+          } />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
