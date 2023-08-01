@@ -54,6 +54,13 @@ nav {
   margin-bottom: 15px;
 }
 
+.home-page-link {
+  padding-top: 50px;
+  padding-left: 200px;
+
+
+}
+
 .container {
 	display: flex;
   border: 2px solid royalblue;
