@@ -69,6 +69,9 @@ const Ingredient = (props) => {
     </div>
   )})
 
+  // Render the message if no results are found
+  const noResultsMessage = <div>Could not find ingredient</div>;
+
 
    useEffect(() => {
     getIngredients();
@@ -85,7 +88,9 @@ const Ingredient = (props) => {
             onChange={handleChange}>
           </input>
           <div className="dropdown">
-              {ingredientsSearch && filteredResultsArray.slice(0,5)}
+            {ingredientsSearch && filteredResults.length > 0
+            ? filteredResultsArray.slice(0, 5)
+            : ingredientsSearch && noResultsMessage}
           </div>
         </form>
         <div>
