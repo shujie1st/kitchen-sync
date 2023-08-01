@@ -6,6 +6,7 @@ import Filter from './components/Filter';
 import './App.css';
 import Preference from './components/Preference';
 import Login from './components/Login';
+import ScrollButton from './components/ScrollButton';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
@@ -60,6 +61,7 @@ function App() {
           } />
         </Routes>
       </BrowserRouter>
+      <ScrollButton />
     </div>
   );
 }

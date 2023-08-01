@@ -151,3 +151,12 @@ nav {
   margin: 5px;
   text-align: center;
 }
+
+#scroll-button {
+  height: 35px;
+  width: 35px;
+  right: 25px;
+  bottom: 25px;
+  position: fixed;
+  cursor: pointer;
+}
