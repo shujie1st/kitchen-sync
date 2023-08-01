@@ -7,7 +7,12 @@ const cors = require("cors");
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-app.use(cors());
+// allow the client("http://localhost:3000")to use cookies 
+app.use(cors({
+  origin: ["http://localhost:3000"],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -24,10 +29,6 @@ app.use('/', indexRoutes);
 app.use('/login', loginRoutes);
 app.use('/logout', logoutRoutes);
 app.use('/register', registerRoutes);
-
-
-
-app.get('/', (req, res) => res.send('Server running'));
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
