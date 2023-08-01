@@ -11,7 +11,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   // Pass selectedIngredients props between sibling components, Ingrdient & Filter
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
+ // Load selectedIngredients from local storage on initial render
+  const initialSelectedIngredients = JSON.parse(localStorage.getItem('selectedIngredients')) || [];
+  const [selectedIngredients, setSelectedIngredients] = useState(initialSelectedIngredients);
 
   const [firstName, setFirstName] = useState("");
 
@@ -29,7 +31,8 @@ function App() {
   }
 
   useEffect(() => {
-    console.log("👉👉👉selectedIngredients: ", selectedIngredients)
+    // Save selectedIngredients to local storage whenever it changes
+    localStorage.setItem('selectedIngredients', JSON.stringify(selectedIngredients));
   }, [selectedIngredients]);
 
 
