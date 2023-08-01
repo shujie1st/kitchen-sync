@@ -5,12 +5,17 @@ const Ingredient = (props) => {
 
   // database ingredients
   const [ingredients, setIngredients] = useState([]);
+  // search
+  const [ingredientsSearch, setIngredientsSearch] = useState('')
+  // store data from search
+  const [filteredResults, setFilteredResults] = useState([]);
+
 
 
   // fetch ingredients from database
   const getIngredients = async () => {
     try {
-      const response = await fetch('http://localhost:3001/ingredients')
+      const response = await fetch(`http://localhost:3001/ingredients`)
       const jsonData = await response.json()
       setIngredients(jsonData);
     } catch (error) {
@@ -24,6 +29,8 @@ const Ingredient = (props) => {
     if (!filteredIngredients.includes(ingredientName)) {
     // callback to send data up to parent App component
     getSelectedIngredients([...filteredIngredients, ingredientName])
+    setIngredientsSearch('')
+    setFilteredResults([])
   }};
 
   const getIngredientsByCategory = (categoryID) => {
@@ -39,6 +46,33 @@ const Ingredient = (props) => {
     })
   }
 
+
+  // search ingredients
+  const handleChange = e => {
+    const searchValue = e.target.value;
+    setIngredientsSearch(searchValue)
+    console.log("🔎searchValue: ", searchValue)
+    
+    // filter data based on search input
+    const filteredSearchData = ingredients.filter((ingredient) => {
+      return Object.values(ingredient).join('').toLowerCase().includes(ingredientsSearch.toLowerCase())
+    })
+    // update the search to the filtered data
+    console.log("👉👉👉 filteredSearchData: ", filteredSearchData)
+    setFilteredResults(filteredSearchData)
+  };
+
+  // iterate over searchValue for dropdown search
+  const filteredResultsArray = filteredResults.map(item => {
+    return (<div key={item.id} onClick={() => handleIngredientClick(item.name)}>
+      {item.name}
+    </div>
+  )})
+
+  // Render the message if no results are found
+  const noResultsMessage = <div>Could not find ingredient</div>;
+
+
    useEffect(() => {
     getIngredients();
   }, []);
@@ -47,8 +81,17 @@ const Ingredient = (props) => {
   return ( 
       <section className="ingredients">
         <form>
-          <input type="text" placeholder="Search ingredients"></input>
-          <button>Search</button>
+          <input 
+            type="text" 
+            placeholder="Search ingredients"
+            value={ingredientsSearch} 
+            onChange={handleChange}>
+          </input>
+          <div className="dropdown">
+            {ingredientsSearch && filteredResults.length > 0
+            ? filteredResultsArray.slice(0, 5)
+            : ingredientsSearch && noResultsMessage}
+          </div>
         </form>
         <div>
           <h4>Vegetables & Greens</h4>  
