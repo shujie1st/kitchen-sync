@@ -29,6 +29,8 @@ const Ingredient = (props) => {
     if (!filteredIngredients.includes(ingredientName)) {
     // callback to send data up to parent App component
     getSelectedIngredients([...filteredIngredients, ingredientName])
+    setIngredientsSearch('')
+    setFilteredResults([])
   }};
 
   const getIngredientsByCategory = (categoryID) => {
@@ -50,6 +52,7 @@ const Ingredient = (props) => {
     const searchValue = e.target.value;
     setIngredientsSearch(searchValue)
     console.log("🔎searchValue: ", searchValue)
+    
     // filter data based on search input
     const filteredSearchData = ingredients.filter((ingredient) => {
       return Object.values(ingredient).join('').toLowerCase().includes(ingredientsSearch.toLowerCase())
@@ -58,6 +61,13 @@ const Ingredient = (props) => {
     console.log("👉👉👉 filteredSearchData: ", filteredSearchData)
     setFilteredResults(filteredSearchData)
   };
+
+  // iterate over searchValue for dropdown search
+  const filteredResultsArray = filteredResults.map(item => {
+    return (<div key={item.id} onClick={() => handleIngredientClick(item.name)}>
+      {item.name}
+    </div>
+  )})
 
 
    useEffect(() => {
@@ -74,6 +84,9 @@ const Ingredient = (props) => {
             value={ingredientsSearch} 
             onChange={handleChange}>
           </input>
+          <div className="dropdown">
+              {ingredientsSearch && filteredResultsArray.slice(0,5)}
+          </div>
         </form>
         <div>
           <h4>Vegetables & Greens</h4>  
