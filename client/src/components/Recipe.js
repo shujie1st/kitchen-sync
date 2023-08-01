@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
 
@@ -40,6 +40,13 @@ function Recipe(){
     setLoadMoreUrl("");
     loadRecipes(initialUrl);
   }
+
+  // set default keywords to render recipes for initial loading 
+  useEffect(() => {
+    const defaultKeywords = 'tomato, lettuce, mushroom';
+    const defaultUrl = `${api}&q=${defaultKeywords}&app_id=${apiId}&app_key=${apiKeys}`;
+    loadRecipes(defaultUrl);
+  }, []);
 
   return (
     <section className="recipes">
