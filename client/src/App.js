@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navigation firstName={firstName} />
+        <Navigation firstName={firstName} setFirstName={setFirstName} />
         <Routes>
           <Route path="/login" element={<Login setFirstName={setFirstName} />} />
           <Route path="/" element={
