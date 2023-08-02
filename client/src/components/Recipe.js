@@ -33,8 +33,7 @@ function Recipe(){
       .catch(error => console.log(error))
   };
 
-  const searchRecipesByKeywords = () => {
-    const keywords = inputElement.current.value;
+  const searchRecipesByKeywords = (keywords) => {
     const initialUrl = `${api}&q=${keywords}&app_id=${apiId}&app_key=${apiKeys}`;
     setRecipes([]);
     setLoadMoreUrl("");
@@ -44,8 +43,7 @@ function Recipe(){
   // set default keywords to render recipes for initial loading 
   useEffect(() => {
     const defaultKeywords = 'tomato, lettuce, mushroom';
-    const defaultUrl = `${api}&q=${defaultKeywords}&app_id=${apiId}&app_key=${apiKeys}`;
-    loadRecipes(defaultUrl);
+    searchRecipesByKeywords(defaultKeywords);
   }, []);
 
   return (
@@ -62,7 +60,7 @@ function Recipe(){
                 aria-label="Search"
                 ref={inputElement}
               />
-              <Button onClick={searchRecipesByKeywords}>
+              <Button onClick={() => searchRecipesByKeywords(inputElement.current.value)}>
                 Search
               </Button>
             </Form>
