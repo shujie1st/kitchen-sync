@@ -15,7 +15,13 @@ router.get('/ingredients', async(req, res) => {
 });
 
 
-router.get('/preferences', (req, res) => {
+router.get('/preferences', async (req, res) => {
+  try {
+    const allPreferences = await pool.query('SELECT * FROM preferences')
+    return res.json(allPreferences.rows)
+  } catch (error) {
+    console.error(error.message);
+  }
 })
 
 
