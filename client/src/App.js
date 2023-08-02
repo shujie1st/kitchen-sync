@@ -6,6 +6,7 @@ import Filter from './components/Filter';
 import './App.css';
 import Preference from './components/Preference';
 import Login from './components/Login';
+import ScrollButton from './components/ScrollButton';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
@@ -14,8 +15,10 @@ function App() {
  // Load selectedIngredients from local storage on initial render
   const initialSelectedIngredients = JSON.parse(localStorage.getItem('selectedIngredients')) || [];
   const [selectedIngredients, setSelectedIngredients] = useState(initialSelectedIngredients);
-
-  const [firstName, setFirstName] = useState("");
+  
+  // Load logged in user first name from local storage, use "" as initial render if user not logged in
+  const loggedinFirstName = localStorage.getItem('firstName') || "";
+  const [firstName, setFirstName] = useState(loggedinFirstName);
 
   // callback to get the selectedIngredients list form the Ingredients component
   const getSelectedIngredients = (selectedIngredients) => {
@@ -34,6 +37,11 @@ function App() {
     // Save selectedIngredients to local storage whenever it changes
     localStorage.setItem('selectedIngredients', JSON.stringify(selectedIngredients));
   }, [selectedIngredients]);
+
+  useEffect(() => {
+    // Save firstName to local storage whenever it changes
+    localStorage.setItem('firstName', firstName);
+  }, [firstName]);
 
 
   return (
@@ -60,6 +68,7 @@ function App() {
           } />
         </Routes>
       </BrowserRouter>
+      <ScrollButton />
     </div>
   );
 }

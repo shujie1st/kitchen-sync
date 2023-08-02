@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
 
@@ -33,13 +33,18 @@ function Recipe(){
       .catch(error => console.log(error))
   };
 
-  const searchRecipesByKeywords = () => {
-    const keywords = inputElement.current.value;
+  const searchRecipesByKeywords = (keywords) => {
     const initialUrl = `${api}&q=${keywords}&app_id=${apiId}&app_key=${apiKeys}`;
     setRecipes([]);
     setLoadMoreUrl("");
     loadRecipes(initialUrl);
   }
+
+  // set default keywords to render recipes for initial loading 
+  useEffect(() => {
+    const defaultKeywords = 'tomato, lettuce, mushroom';
+    searchRecipesByKeywords(defaultKeywords);
+  }, []);
 
   return (
     <section className="recipes">
@@ -55,7 +60,7 @@ function Recipe(){
                 aria-label="Search"
                 ref={inputElement}
               />
-              <Button onClick={searchRecipesByKeywords}>
+              <Button onClick={() => searchRecipesByKeywords(inputElement.current.value)}>
                 Search
               </Button>
             </Form>

@@ -1,6 +1,7 @@
 import { Button, Form, Alert } from "react-bootstrap";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom"
 
 function Login(props){
   const navigate = useNavigate();
@@ -66,6 +67,7 @@ function Login(props){
           </Button>
         </Form>
 
+        <div className="home-page-link"><Link to="/">Back to Homepage</Link></div>
       </section>
   );
 }
