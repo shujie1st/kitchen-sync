@@ -9,7 +9,7 @@ const app = express();
 
 // allow the client("http://localhost:3000")to use cookies 
 app.use(cors({
-  origin: ["http://localhost:3000"],
+  origin: ["http://localhost:3001"],
   credentials: true
 }));
 
