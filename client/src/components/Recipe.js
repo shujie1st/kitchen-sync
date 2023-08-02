@@ -1,13 +1,16 @@
 import { useState, useRef, useEffect } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { Button, Col, Container, Form, Row, Modal } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
 
-function Recipe(){
+function Recipe(props){
 
   const [recipes, setRecipes] = useState([]);
   const [loadMoreUrl, setLoadMoreUrl] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const inputElement = useRef();
+  const navigate = useNavigate();
 
   const api = process.env.REACT_APP_API;
   const apiId = process.env.REACT_APP_API_ID;
@@ -38,7 +41,18 @@ function Recipe(){
     setRecipes([]);
     setLoadMoreUrl("");
     loadRecipes(initialUrl);
-  }
+  };
+  
+  // Show modal if user click the save recipe icon in RecipeCard without logging in
+  const favoriteIconClicked = () => {
+    if (props.firstName) {
+      setShowModal(false);
+      console.log("recipe saved");
+    } else {
+      setShowModal(true);
+    }
+  };
+
 
   // set default keywords to render recipes for initial loading 
   useEffect(() => {
@@ -49,10 +63,10 @@ function Recipe(){
   return (
     <section className="recipes">
 
-      <Container className="search">
+      <Container>
         <Row>
-          <Col sm={4}>
-            <Form className="d-flex">
+          <Col sm={12}>
+            <Form className="d-flex search">
               <Form.Control
                 type="search"
                 placeholder="Search recipes"
@@ -70,13 +84,28 @@ function Recipe(){
       
       <section className="recipe-cards">
         {recipes.map(recipe => {
-          return <RecipeCard recipe={recipe} />
+          return <RecipeCard recipe={recipe} favoriteIconClicked={favoriteIconClicked}  />
         })}
       </section>
 
       <section className="load-more">
         {loadMoreUrl && <Button onClick={() => loadRecipes(loadMoreUrl)}>Load more...</Button>}
       </section>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Please log in to continue...</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>You need to log in to save recipes. Would you like to log in now?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            NO
+          </Button>
+          <Button variant="primary" onClick={() => navigate("/login")}>
+            YES
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
     </section>
   );
