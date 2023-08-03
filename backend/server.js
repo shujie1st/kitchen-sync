@@ -7,10 +7,11 @@ const cookieSession = require('cookie-session');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+const CORS_PORT = process.env.CORS_PORT
 
-// allow the client("http://localhost:3000")to use cookies 
+// allow the client to use cookies 
 app.use(cors({
-  origin: ["http://localhost:3002"],
+  origin: [`http://localhost:${CORS_PORT}`],
   credentials: true
 }));
 
