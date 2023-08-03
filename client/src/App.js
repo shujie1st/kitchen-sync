@@ -43,7 +43,7 @@ function App() {
 
   useEffect(() => {
     // Save selectedIngredients to local storage whenever it changes
-    localStorage.setItem('filter', JSON.stringify(filter));
+    localStorage.setItem('selectedFilters', JSON.stringify(filter));
   }, [filter]);
 
   useEffect(() => {
