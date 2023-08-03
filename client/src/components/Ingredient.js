@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const Ingredient = (props) => {
-  const { filteredIngredients, getSelectedIngredients } = props
+  const { filteredList, getSelectedIngredients } = props
 
   // database ingredients
   const [ingredients, setIngredients] = useState([]);
@@ -26,9 +26,9 @@ const Ingredient = (props) => {
   // select ingredients for Filter component
   const handleIngredientClick = (ingredientName) => {
     // check if ingredient has already been selected
-    if (!filteredIngredients.includes(ingredientName)) {
+    if (!filteredList.includes(ingredientName)) {
     // callback to send data up to parent App component
-    getSelectedIngredients([...filteredIngredients, ingredientName])
+    getSelectedIngredients([...filteredList, ingredientName])
     setIngredientsSearch('')
     setFilteredResults([])
   }};
@@ -37,10 +37,12 @@ const Ingredient = (props) => {
     return ingredients.map(ingredient => {
       if (ingredient.category_id === categoryID) {
         return (
-          <button key={ingredient.id} onClick={() => handleIngredientClick(ingredient.name)}>
-            {ingredient.name}
-            </button>
-            );
+          <button 
+            key={ingredient.id} 
+            onClick={() => handleIngredientClick(ingredient.name)}>
+              {ingredient.name}
+          </button>
+          );
       }
       return null;
     })
