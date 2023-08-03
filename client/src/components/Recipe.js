@@ -24,6 +24,7 @@ function Recipe(props){
         setRecipes(prev => [...prev,
           ...data.hits.map(each => {
             return {
+              apiId: each.recipe.uri,
               imageLink: each.recipe.images["THUMBNAIL"].url,
               name: each.recipe.label,
               websiteName: each.recipe.source,
@@ -43,12 +44,39 @@ function Recipe(props){
     loadRecipes(initialUrl);
   };
   
-  // Show modal if user click the save recipe icon in RecipeCard without logging in
-  const favoriteIconClicked = () => {
+  const favoriteIconClicked = async (recipe) => {
+    // if user logged in and click the save recipe icon:
     if (props.firstName) {
       setShowModal(false);
-      console.log("recipe saved");
+      console.log(`${recipe.name} has been clicked`);
+
+      // send post request with data about the clicked recipe
+      try {
+        const response = await fetch("http://localhost:3001/user_recipes", {
+          method: "POST",
+          mode: "cors",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            recipeId: recipe.apiId,
+            recipeName: recipe.name,
+            recipeLink: recipe.websiteLink,
+          }),
+        });
+  
+        if (response.status === 200) { 
+          console.log("Recipe saved")
+        } else {
+          console.log("Failed to save recipe");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
     } else {
+      // Show modal if user click the save recipe icon in RecipeCard without logging in
       setShowModal(true);
     }
   };
@@ -83,8 +111,8 @@ function Recipe(props){
       </Container>
       
       <section className="recipe-cards">
-        {recipes.map(recipe => {
-          return <RecipeCard recipe={recipe} favoriteIconClicked={favoriteIconClicked}  />
+        {recipes.map((recipe, index) => {
+          return <RecipeCard key={index} recipe={recipe} favoriteIconClicked={favoriteIconClicked}  />
         })}
       </section>
 

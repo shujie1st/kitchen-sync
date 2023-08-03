@@ -16,7 +16,7 @@ function RecipeCard(props){
         </Card.Text>
       </Card.Body>
       <Card.Body className='favorite-icon'>
-        <FaRegHeart onClick={props.favoriteIconClicked} />
+        <FaRegHeart onClick={() => props.favoriteIconClicked(props.recipe)} />
       </Card.Body>  
     </Card>
   );
