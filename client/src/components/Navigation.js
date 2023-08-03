@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function Navigation(props){
   const navigate = useNavigate();
 
-  const logout = async (event) => {
+  const logout = async () => {
 
     try {
       const response = await fetch("http://localhost:3001/logout", {
@@ -28,7 +28,7 @@ function Navigation(props){
       <span className="nav-text">KitchenSync</span>
 
       <div className="nav-right">
-        {props.firstName && <div className="nav-welcome"><span>Welcome {props.firstName}</span><button className="logout" onClick={logout}>Logout</button></div>}
+        {props.firstName && <div className="nav-welcome"><span>Welcome <Link to="/profile">{props.firstName}</Link></span><button className="logout" onClick={logout}>Logout</button></div>}
         {!props.firstName && <Link to="/login">Login</Link>}
       </div>
     </nav>
