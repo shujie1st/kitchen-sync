@@ -178,3 +178,32 @@ nav {
   position: fixed;
   cursor: pointer;
 }
+
+.profile {
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  border: 2px solid royalblue;
+  height: 500px;
+  gap: 5px;
+  padding: 5px;
+}
+
+.profile-message {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  border: 2px solid aqua;
+  width: 25%;
+
+}
+
+.user-recipes {
+  border: 2px solid aqua;
+  width: 40%;
+}
+
+.user-preferences {
+  border: 2px solid aqua;
+  width: 35%;
+}
