@@ -28,7 +28,7 @@ function Navigation(props){
       <span className="nav-text">KitchenSync</span>
 
       <div className="nav-right">
-        {props.firstName && <div className="nav-welcome"><span>Welcome {props.firstName}</span><button onClick={logout}>Logout</button></div>}
+        {props.firstName && <div className="nav-welcome"><span>Welcome {props.firstName}</span><button className="logout" onClick={logout}>Logout</button></div>}
         {!props.firstName && <Link to="/login">Login</Link>}
       </div>
     </nav>

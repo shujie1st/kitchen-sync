@@ -51,14 +51,14 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login setFirstName={setFirstName} />} />
           <Route path="/" element={
-            <main className="container">
+            <main className="container-lg">
               <Ingredient 
           filteredIngredients={selectedIngredients}
           getSelectedIngredients={getSelectedIngredients}
         />
               <div className="container-center">
                 <Preference />
-                <Recipe />
+                <Recipe firstName={firstName} />
               </div>
               <Filter 
           filteredIngredients={selectedIngredients}

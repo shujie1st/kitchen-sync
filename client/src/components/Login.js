@@ -45,10 +45,10 @@ function Login(props){
 
   return ( 
       <section className="login">
-        <Alert variant="danger">{message}</Alert>
+        {message && <Alert variant="danger">{message}</Alert>}
 
         <Form className="login-form" onSubmit={handleSubmit}>
-          <h2>Login</h2>
+          <h3>Login</h3>
 
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>

@@ -1,12 +1,6 @@
 const express = require('express');
 const router  = express.Router();
 const { getUserByEmail } = require('../db/queries/users');
-const cookieSession = require('cookie-session');
-
-router.use(cookieSession({
-  name: "session",
-  keys: ["some-long-secret-key1", "some-long-secret-key2"],
-}));
 
 router.post('/', async (req, res) => {
   try {
