@@ -46,8 +46,7 @@ function Preference(props){
 
   return ( 
       <section className="preferences">
-        Preference components
-        {getAllPreferences().slice(0,10)}
+        {getAllPreferences()}
       </section>
   );
 }
