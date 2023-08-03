@@ -10,30 +10,38 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
 function App() {
-  // Pass selectedIngredients props between sibling components, Ingrdient & Filter
- // Load selectedIngredients from local storage on initial render
-  const initialSelectedIngredients = JSON.parse(localStorage.getItem('selectedIngredients')) || [];
-  const [selectedIngredients, setSelectedIngredients] = useState(initialSelectedIngredients);
+  // Pass filters props between sibling components, Ingrdient/Preference & Filter
+ // Load filters from local storage on initial render
+  const initialFilter = JSON.parse(localStorage.getItem('selectedFilters')) || [];
+  const [filter, setFilter] = useState(initialFilter);
+
 
   const [firstName, setFirstName] = useState("");
 
-  // callback to get the selectedIngredients list form the Ingredients component
+  // callback to get the selectedIngredients list from the Ingredients component
   const getSelectedIngredients = (selectedIngredients) => {
     // set ingredients to pass to the Filter prop
-    setSelectedIngredients(selectedIngredients)
+    setFilter(selectedIngredients)
+  }
+
+   // callback to get selectedPreferences list from the Preferences component
+  const getSelectedPreferences = (selectedPref) => {
+    // set preferences to pass to Filtet prop
+    // setFilter([...filter, selectedItem])
+    setFilter(selectedPref)
   }
 
   // callback to remove ingredients from the Filter component
-  const removeSelectedIngredient = (selectedIngredient) => {
+  const removeItemFromFilterList = (clickedItem) => {
     // update ingredient to remove from the Ingredients component
-     setSelectedIngredients(selectedIngredient)
-
+    setFilter(clickedItem)
   }
+
 
   useEffect(() => {
     // Save selectedIngredients to local storage whenever it changes
-    localStorage.setItem('selectedIngredients', JSON.stringify(selectedIngredients));
-  }, [selectedIngredients]);
+    localStorage.setItem('filter', JSON.stringify(filter));
+  }, [filter]);
 
 
   return (
@@ -45,17 +53,20 @@ function App() {
           <Route path="/" element={
             <main className="container">
               <Ingredient 
-          filteredIngredients={selectedIngredients}
-          getSelectedIngredients={getSelectedIngredients}
-        />
+                filteredList={filter}
+                getSelectedIngredients={getSelectedIngredients}
+              />
               <div className="container-center">
-                <Preference />
+                <Preference 
+                  filteredList={filter}
+                  getSelectedPreferences={getSelectedPreferences}
+                />
                 <Recipe />
               </div>
               <Filter 
-          filteredIngredients={selectedIngredients}
-          removeSelectedIngredient={removeSelectedIngredient} 
-        />
+                filteredList={filter}
+                removeItemFromFilterList={removeItemFromFilterList} 
+              />
             </main> 
           } />
         </Routes>
