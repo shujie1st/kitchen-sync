@@ -12,5 +12,12 @@ const getUserByEmail = (email) => {
     });
 };
 
+// Save recipe to DB for logged in user
+const saveRecipe = (recipeId, recipeName, recipeLink, userId) => {
+  return db.query(
+    `INSERT INTO user_recipes (recipe_id, name, recipe_link, user_id) VALUES ($1, $2, $3, $4)`,
+  [recipeId, recipeName, recipeLink, userId])    
+};
 
-module.exports = { getUserByEmail };
+
+module.exports = { getUserByEmail, saveRecipe };

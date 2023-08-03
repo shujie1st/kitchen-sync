@@ -31,40 +31,45 @@ nav {
   font-style: italic;
 }
 
-.alert {
-  background-color: tomato;
-  width: 25%;
-  margin-left: 200px;
+.logout {
+  font-size: small;
 }
 
 .login-form {
-  padding-top: 40px;
+  padding-top: 30px;
   padding-left: 200px;
 }
 
 #formBasicEmail {
   width: 30%;
-  margin-top: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 #formBasicPassword {
   width: 30%;
-  margin-top: 5px;
   margin-bottom: 15px;
 }
 
-.container {
+.home-page-link {
+  padding-top: 40px;
+  padding-left: 200px;
+}
+
+.container-lg {
 	display: flex;
   border: 2px solid royalblue;
   margin: 5px;
 }
 
 .ingredients {
-	width: 20%;
+	width: 21%;
   border: 2px solid aqua;
   margin: 5px;
   text-align: center;
+}
+
+.ingredients button {
+  font-size: 8px;
 }
 
 .container-center {
@@ -74,7 +79,7 @@ nav {
 }
 
 .preferences {
-  height: 40px;
+  height: 80px;
   border: 2px solid fuchsia;
   margin: 5px;
   text-align: center;
@@ -83,50 +88,66 @@ nav {
 .recipes {
   border: 2px solid fuchsia;
   margin: 5px;
+  padding-top: 5px;
 }
 
-.search {
-  border: none;
+.search button {
+  font-size: small;
 }
 
 .recipe-cards {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
+  padding-top: 10px;
 }
 
-.recipe-card {
+.recipe-cards .recipe-card {
+  width: 275px;
+  height: 102px;
   display: flex;
-  border: 1px solid silver;
   flex-direction: row;
-  align-items: center;
-  width: 17rem;
-  gap: 5px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
-.recipe-card .card-img-top {
+.recipe-card .card-img-left {
   width: 100px;
+  height: 100px;
+  border-top-left-radius: 5%;
+  border-bottom-left-radius: 5%;
 }
 
-.recipe-body {
-  width:50%
+.recipe-card .recipe-body {
+  display: flex;
+  flex-direction: column;
+  width: 135px;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 5px;
 }
 
 .recipe-card .card-title {
-  font-weight: 500;
-  font-size: small;
+  font-size: x-small;
+  margin-bottom: 2px;
 }
 
-.dish-type {
-  color: grey;
+.recipe-card .dish-type {
   font-size: x-small;
+  color: gray;
 }
 
-.recipe-link {
-  font-size: x-small;
+.recipe-card .recipe-link {
+  font-size: xx-small;
   font-style: italic;
+  position: absolute;
+  bottom: 8px;
+}
+
+.recipe-card .favorite-icon {
+  width: 30px;
+  padding-top: 10px ;
+  padding-right: 6px;
+  padding-left: 0;
 }
 
 .load-more {
@@ -143,4 +164,17 @@ nav {
   border: 2px solid aqua;
   margin: 5px;
   text-align: center;
+}
+
+.filters button {
+  font-size: 8px;
+}
+
+#scroll-button {
+  height: 35px;
+  width: 35px;
+  right: 25px;
+  bottom: 25px;
+  position: fixed;
+  cursor: pointer;
 }

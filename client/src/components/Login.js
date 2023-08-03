@@ -1,6 +1,7 @@
 import { Button, Form, Alert } from "react-bootstrap";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom"
 
 function Login(props){
   const navigate = useNavigate();
@@ -44,10 +45,10 @@ function Login(props){
 
   return ( 
       <section className="login">
-        <Alert variant="danger">{message}</Alert>
+        {message && <Alert variant="danger">{message}</Alert>}
 
         <Form className="login-form" onSubmit={handleSubmit}>
-          <h2>Login</h2>
+          <h3>Login</h3>
 
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
@@ -66,6 +67,7 @@ function Login(props){
           </Button>
         </Form>
 
+        <div className="home-page-link"><Link to="/">Back to Homepage</Link></div>
       </section>
   );
 }

@@ -3,6 +3,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+const cookieSession = require('cookie-session');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -15,6 +16,10 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieSession({
+  name: "session",
+  keys: ["some-long-secret-key1", "some-long-secret-key2"],
+}));
 
 
 
@@ -23,12 +28,14 @@ const indexRoutes = require('./routes/index');
 const loginRoutes = require('./routes/login');
 const logoutRoutes = require('./routes/logout');
 const registerRoutes = require('./routes/register');
+const userRecipesRoutes = require('./routes/user_recipes');
 
 // Mount all resource routes
 app.use('/', indexRoutes);
 app.use('/login', loginRoutes);
 app.use('/logout', logoutRoutes);
 app.use('/register', registerRoutes);
+app.use('/user_recipes', userRecipesRoutes)
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);

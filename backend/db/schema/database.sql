@@ -33,9 +33,9 @@ CREATE TABLE preferences (
 
 CREATE TABLE user_recipes (
   id SERIAL PRIMARY KEY,
+  recipe_id VARCHAR(2083),
   name VARCHAR(255) NOT NULL,
-  recipe_link VARCHAR(2083), 
-  recipe_img VARCHAR(2083),
+  recipe_link VARCHAR(2083),
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
 

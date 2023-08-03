@@ -6,17 +6,19 @@ import Filter from './components/Filter';
 import './App.css';
 import Preference from './components/Preference';
 import Login from './components/Login';
+import ScrollButton from './components/ScrollButton';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
 function App() {
-  // Pass filters props between sibling components, Ingrdient/Preference & Filter
+ // Pass filters props between sibling components, Ingrdient/Preference & Filter
  // Load filters from local storage on initial render
   const initialFilter = JSON.parse(localStorage.getItem('selectedFilters')) || [];
   const [filter, setFilter] = useState(initialFilter);
 
 
   const [firstName, setFirstName] = useState("");
+
 
   // callback to get the selectedIngredients list from the Ingredients component
   const getSelectedIngredients = (selectedIngredients) => {
@@ -43,6 +45,11 @@ function App() {
     localStorage.setItem('filter', JSON.stringify(filter));
   }, [filter]);
 
+  useEffect(() => {
+    // Save firstName to local storage whenever it changes
+    localStorage.setItem('firstName', firstName);
+  }, [firstName]);
+
 
   return (
     <div className="App">
@@ -51,17 +58,19 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login setFirstName={setFirstName} />} />
           <Route path="/" element={
-            <main className="container">
+            <main className="container-lg">
               <Ingredient 
                 filteredList={filter}
                 getSelectedIngredients={getSelectedIngredients}
               />
               <div className="container-center">
+
                 <Preference 
                   filteredList={filter}
                   getSelectedPreferences={getSelectedPreferences}
                 />
-                <Recipe />
+                <Recipe firstName={firstName} />
+
               </div>
               <Filter 
                 filteredList={filter}
@@ -71,6 +80,7 @@ function App() {
           } />
         </Routes>
       </BrowserRouter>
+      <ScrollButton />
     </div>
   );
 }
