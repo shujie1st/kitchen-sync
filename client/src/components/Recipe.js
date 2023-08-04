@@ -50,33 +50,57 @@ function Recipe(props){
     if (props.firstName) {
       setShowModal(false);
       console.log(`${recipe.name} has been clicked`);
-
-      // send post request with data about the clicked recipe
-      try {
-        const response = await fetch("http://localhost:3001/user_recipes", {
-          method: "POST",
-          mode: "cors",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            recipeId: recipe.apiId,
-            recipeName: recipe.name,
-            recipeLink: recipe.websiteLink,
-          }),
-        });
-  
-        if (response.status === 200) {
-          setFavoriteRecipes(prev => [...prev, recipe])
-          console.log("Recipe saved")
-        } else {
-          console.log("Failed to save recipe");
+    
+      if (!favoriteRecipes.includes(recipe)) {
+        // if this recipe is not saved yet, send post request with data about the clicked recipe
+        try {
+          const response = await fetch("http://localhost:3001/user_recipes", {
+            method: "POST",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              recipeId: recipe.apiId,
+              recipeName: recipe.name,
+              recipeLink: recipe.websiteLink,
+            }),
+          });
+    
+          if (response.status === 200) {
+            setFavoriteRecipes(prev => [...prev, recipe])
+            console.log("Recipe saved")
+          } else {
+            console.log("Failed to save recipe");
+          }
+        } catch (error) {
+          console.error(error);
         }
-      } catch (error) {
-        console.error(error);
       }
-
+      else {
+        // if this recipe is already saved, send delete request with data about the clicked recipe
+        try {
+          const response = await fetch("http://localhost:3001/user_recipes", {
+            method: "DELETE",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ recipeId: recipe.apiId }),
+          });
+    
+          if (response.status === 200) {
+            setFavoriteRecipes(prev => prev.filter(item => item !== recipe));
+            console.log("Recipe removed from favorite")
+          } else {
+            console.log("Failed to remove recipe");
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
     } else {
       // Show modal if user click the save recipe icon in RecipeCard without logging in
       setShowModal(true);

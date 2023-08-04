@@ -19,5 +19,11 @@ const saveRecipe = (recipeId, recipeName, recipeLink, userId) => {
   [recipeId, recipeName, recipeLink, userId])    
 };
 
+// Delete recipe from DB for logged in user
+const deleteRecipe = (recipeId, userId) => {
+  return db.query(
+    `DELETE FROM user_recipes WHERE recipe_id = $1 AND user_id = $2`,
+  [recipeId, userId])    
+};
 
-module.exports = { getUserByEmail, saveRecipe };
+module.exports = { getUserByEmail, saveRecipe, deleteRecipe };
