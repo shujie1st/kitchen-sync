@@ -18,7 +18,9 @@ function App() {
   const [filter, setFilter] = useState(initialFilter);
 
 
-  const [firstName, setFirstName] = useState("");
+  // Load logged in user first name from local storage, use "" as initial render if user not logged in
+  const loggedinFirstName = localStorage.getItem('firstName') || "";
+  const [firstName, setFirstName] = useState(loggedinFirstName);
 
 
   // callback to get the selectedIngredients list from the Ingredients component

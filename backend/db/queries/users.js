@@ -12,6 +12,20 @@ const getUserByEmail = (email) => {
     });
 };
 
+// Retrieve saved recipes by userId
+const getRecipesByUserId = (userId) => {
+  return db.query('SELECT * FROM user_recipes WHERE user_id = $1;', [userId])
+  .then(data => {
+    if (data.rowCount === 0) {
+      return [];
+    } else {
+      return data.rows;
+    }
+  }
+
+  );
+};
+
 // Save recipe to DB for logged in user
 const saveRecipe = (recipeId, recipeName, recipeLink, userId) => {
   return db.query(
@@ -19,5 +33,11 @@ const saveRecipe = (recipeId, recipeName, recipeLink, userId) => {
   [recipeId, recipeName, recipeLink, userId])    
 };
 
+// Delete recipe from DB for logged in user
+const deleteRecipe = (recipeId, userId) => {
+  return db.query(
+    `DELETE FROM user_recipes WHERE recipe_id = $1 AND user_id = $2`,
+  [recipeId, userId])    
+};
 
-module.exports = { getUserByEmail, saveRecipe };
+module.exports = { getUserByEmail, getRecipesByUserId, saveRecipe, deleteRecipe };
