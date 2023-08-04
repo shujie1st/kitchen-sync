@@ -44,6 +44,33 @@ function Recipe(props){
     setLoadMoreUrl("");
     loadRecipes(initialUrl);
   };
+
+  const getFavoriteRecipesForUser = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/user_recipes", {
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 200) {
+        const data = await response.json();
+        console.log(data);
+        setFavoriteRecipes(data.map(i => ({
+          recipeId: i.recipe_id,
+          recipeName: i.name,
+          recipeLink: i.recipe_link
+        })));
+      } else {
+        console.log("Failed to get saved recipes for user");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   
   const favoriteIconClicked = async (recipe) => {
     // if user logged in and click the save recipe icon:
@@ -51,9 +78,15 @@ function Recipe(props){
       setShowModal(false);
       console.log(`${recipe.name} has been clicked`);
     
-      if (!favoriteRecipes.includes(recipe)) {
+      if (!favoriteRecipes.find(r => r.recipeId === recipe.apiId)) {
         // if this recipe is not saved yet, send post request with data about the clicked recipe
         try {
+          const newFavoriteRecipe = {
+            recipeId: recipe.apiId,
+            recipeName: recipe.name,
+            recipeLink: recipe.websiteLink,
+          };
+
           const response = await fetch("http://localhost:3001/user_recipes", {
             method: "POST",
             mode: "cors",
@@ -61,15 +94,11 @@ function Recipe(props){
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-              recipeId: recipe.apiId,
-              recipeName: recipe.name,
-              recipeLink: recipe.websiteLink,
-            }),
+            body: JSON.stringify(newFavoriteRecipe),
           });
     
           if (response.status === 200) {
-            setFavoriteRecipes(prev => [...prev, recipe])
+            setFavoriteRecipes(prev => [...prev, newFavoriteRecipe])
             console.log("Recipe saved")
           } else {
             console.log("Failed to save recipe");
@@ -92,7 +121,7 @@ function Recipe(props){
           });
     
           if (response.status === 200) {
-            setFavoriteRecipes(prev => prev.filter(item => item !== recipe));
+            setFavoriteRecipes(prev => prev.filter(item => item.recipeId !== recipe.apiId));
             console.log("Recipe removed from favorite")
           } else {
             console.log("Failed to remove recipe");
@@ -108,10 +137,11 @@ function Recipe(props){
   };
 
 
-  // set default keywords to render recipes for initial loading 
+  // For initial page loading: set default keywords to render recipes, and get saveds recipes data by userId
   useEffect(() => {
     const defaultKeywords = 'tomato, lettuce, mushroom';
     searchRecipesByKeywords(defaultKeywords);
+    getFavoriteRecipesForUser();
   }, []);
 
   return (
@@ -138,7 +168,7 @@ function Recipe(props){
       
       <section className="recipe-cards">
         {recipes.map((recipe, index) => {
-          return <RecipeCard key={index} recipe={recipe} favoriteIconClicked={favoriteIconClicked} isFavorite={favoriteRecipes.includes(recipe)}/>
+          return <RecipeCard key={index} recipe={recipe} favoriteIconClicked={favoriteIconClicked} isFavorite={favoriteRecipes.find(r => r.recipeId === recipe.apiId)}/>
         })}
       </section>
 

@@ -1,6 +1,24 @@
 const express = require('express');
 const router  = express.Router();
-const { saveRecipe, deleteRecipe } = require('../db/queries/users');
+const { getRecipesByUserId, saveRecipe, deleteRecipe } = require('../db/queries/users');
+
+router.get('/', async (req, res) => {
+  try {
+    const userId = req.session.userId;
+
+    if (!userId) {
+      throw new Error("userId not found")
+    }
+
+    // Retrieve recipes by userId from DB
+    const savedRecipes = await getRecipesByUserId(userId);
+    return res.json(savedRecipes);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error during delete recipe");
+  }
+});
 
 router.post('/', async (req, res) => {
   try {
