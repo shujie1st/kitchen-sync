@@ -9,6 +9,7 @@ function Recipe(props){
   const [loadMoreUrl, setLoadMoreUrl] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const [preferenceNames, setPreferenceNames] = useState([]);
 
   const inputElement = useRef();
   const navigate = useNavigate();
@@ -136,12 +137,30 @@ function Recipe(props){
     }
   };
 
+  // fetch preferences from database, then set a list of all the preference names
+  // it will be used to decide if an element in the filteredList is an ingredient or preference 
+  const fetchPreferenceNames = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/preferences`);
+      const data = await response.json();
+      setPreferenceNames(data.map(item => item.name));
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
 
-  // For initial page loading: set default keywords to render recipes, and get saveds recipes data by userId
+
+  // For initial page loading:
   useEffect(() => {
+    // set default keywords to render recipes
     const defaultKeywords = 'tomato, lettuce, mushroom';
     searchRecipesByKeywords(defaultKeywords);
+
+    // get saveds recipes data by userId
     getFavoriteRecipesForUser();
+    
+    // fetch a list of the preference names from DB
+    fetchPreferenceNames();
   }, []);
 
   return (
