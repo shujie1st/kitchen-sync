@@ -8,6 +8,7 @@ function Recipe(props){
   const [recipes, setRecipes] = useState([]);
   const [loadMoreUrl, setLoadMoreUrl] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   const inputElement = useRef();
   const navigate = useNavigate();
@@ -66,7 +67,8 @@ function Recipe(props){
           }),
         });
   
-        if (response.status === 200) { 
+        if (response.status === 200) {
+          setFavoriteRecipes(prev => [...prev, recipe])
           console.log("Recipe saved")
         } else {
           console.log("Failed to save recipe");
@@ -112,7 +114,7 @@ function Recipe(props){
       
       <section className="recipe-cards">
         {recipes.map((recipe, index) => {
-          return <RecipeCard key={index} recipe={recipe} favoriteIconClicked={favoriteIconClicked}  />
+          return <RecipeCard key={index} recipe={recipe} favoriteIconClicked={favoriteIconClicked} isFavorite={favoriteRecipes.includes(recipe)}/>
         })}
       </section>
 

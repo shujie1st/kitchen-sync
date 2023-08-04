@@ -1,5 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import { FaRegHeart } from "@react-icons/all-files/fa/FaRegHeart";
+import { FaHeart} from "@react-icons/all-files/fa/FaHeart";
 
 function RecipeCard(props){
 
@@ -16,7 +17,9 @@ function RecipeCard(props){
         </Card.Text>
       </Card.Body>
       <Card.Body className='favorite-icon'>
-        <FaRegHeart onClick={() => props.favoriteIconClicked(props.recipe)} />
+        <div onClick={() => props.favoriteIconClicked(props.recipe)} >
+          {props.isFavorite ? <FaHeart style={{color: "red"}}/> : <FaRegHeart />}
+        </div> 
       </Card.Body>  
     </Card>
   );
