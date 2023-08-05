@@ -188,14 +188,16 @@ function Recipe(props){
     fetchPreferenceNames();
   }, []);
   
-  // when the value of preferneceNames changed / that is also when the page initial loading
+  // when the value of preferneceNames updated / that is also when the page initial loading
   useEffect(() => {
-    // set default keywords to render recipes
-    const defaultKeywords = 'tomato lettuce mushroom';
-    searchRecipesByKeywords(defaultKeywords);
+    if (preferenceNames.length > 0) {
+      // set default keywords to render recipes
+      const defaultKeywords = 'tomato lettuce mushroom';
+      searchRecipesByKeywords(defaultKeywords);
 
-    // get saveds recipes data by userId
-    getFavoriteRecipesForUser();
+      // get saveds recipes data by userId
+      getFavoriteRecipesForUser();
+    }
   }, [preferenceNames]);
 
   return (
