@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Col, Container, Form, Row, Modal } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, Modal, Alert } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
 
 function Recipe(props){
@@ -10,6 +10,7 @@ function Recipe(props){
   const [showModal, setShowModal] = useState(false);
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [preferenceNames, setPreferenceNames] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
 
   const inputElement = useRef();
   const navigate = useNavigate();
@@ -22,7 +23,20 @@ function Recipe(props){
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        setLoadMoreUrl(data["_links"].next.href);
+
+        if (data["_links"].next) {
+          setLoadMoreUrl(data["_links"].next.href);
+        } else {
+          setLoadMoreUrl("");
+        }
+        
+        // if no recipes found by API, show alert
+        if (data.hits.length === 0) {
+          setShowAlert(true);
+        } else {
+          setShowAlert(false);
+        }
+
         setRecipes(prev => [...prev,
           ...data.hits.map(each => {
             return {
@@ -39,8 +53,22 @@ function Recipe(props){
       .catch(error => console.log(error))
   };
 
-  const searchRecipesByKeywords = (keywords) => {
-    const initialUrl = `${api}&q=${keywords}&app_id=${apiId}&app_key=${apiKeys}`;
+  const searchRecipesByKeywords = (inputKeywords) => {
+    
+    // loop over the filteredList to add each item to its correct keywords category   
+    let ingredientKeywords = "";
+    let preferenceKeywords = "";
+    for (const each of props.filteredList) {
+      if (preferenceNames.includes(each)) {
+        preferenceKeywords += `&health=${each}`;
+      } else {
+        ingredientKeywords += ` ${each}`;
+      }
+    }
+
+    let inputAndIngredientKeywords = (inputKeywords + ingredientKeywords).trim();
+
+    const initialUrl = `${api}&q=${inputAndIngredientKeywords}&app_id=${apiId}&app_key=${apiKeys}${preferenceKeywords}`;
     setRecipes([]);
     setLoadMoreUrl("");
     loadRecipes(initialUrl);
@@ -59,7 +87,6 @@ function Recipe(props){
 
       if (response.status === 200) {
         const data = await response.json();
-        console.log(data);
         setFavoriteRecipes(data.map(i => ({
           recipeId: i.recipe_id,
           recipeName: i.name,
@@ -141,7 +168,14 @@ function Recipe(props){
   // it will be used to decide if an element in the filteredList is an ingredient or preference 
   const fetchPreferenceNames = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/preferences`);
+      const response = await fetch(`http://localhost:3001/preferences`, {
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const data = await response.json();
       setPreferenceNames(data.map(item => item.name));
     } catch (error) {
@@ -149,19 +183,20 @@ function Recipe(props){
     }
   }
 
-
-  // For initial page loading:
+  // fetch a list of the preference names from DB when the page initial loading
+  useEffect(() => {
+    fetchPreferenceNames();
+  }, []);
+  
+  // when the value of preferneceNames changed / that is also when the page initial loading
   useEffect(() => {
     // set default keywords to render recipes
-    const defaultKeywords = 'tomato, lettuce, mushroom';
+    const defaultKeywords = 'tomato lettuce mushroom';
     searchRecipesByKeywords(defaultKeywords);
 
     // get saveds recipes data by userId
     getFavoriteRecipesForUser();
-    
-    // fetch a list of the preference names from DB
-    fetchPreferenceNames();
-  }, []);
+  }, [preferenceNames]);
 
   return (
     <section className="recipes">
@@ -189,6 +224,7 @@ function Recipe(props){
         {recipes.map((recipe, index) => {
           return <RecipeCard key={index} recipe={recipe} favoriteIconClicked={favoriteIconClicked} isFavorite={favoriteRecipes.find(r => r.recipeId === recipe.apiId)}/>
         })}
+        {showAlert && <Alert variant="info">Sorry, no recipes matched your search. Please try again.</Alert>}
       </section>
 
       <section className="load-more">
