@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import SavedRecipeCard from './SavedRecipeCard';
+import configData from "../config.json";
 
 function UserRecipes() {
   const [recipeUris, setRecipeUris] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState([]);
 
-  const apiByUri = process.env.REACT_APP_API_BY_URI;
+  const apiByUri = configData.EDAMAM_API_BY_URI;
   const apiId = process.env.REACT_APP_API_ID;
   const apiKeys = process.env.REACT_APP_API_KEYS;
   
@@ -102,7 +103,7 @@ function UserRecipes() {
   return (
     <section className="user-recipes">
       <Card body>Favorite Recipes</Card>
-      <section className="saved-recipe-cards">
+      <section className="recipe-cards">
         {savedRecipes.map((recipe, index) => {
           return <SavedRecipeCard key={index} recipe={recipe} deleteSavedRecipe={deleteSavedRecipe} />
         })}

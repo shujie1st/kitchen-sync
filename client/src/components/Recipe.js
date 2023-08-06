@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Col, Container, Form, Row, Modal, Alert } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
+import configData from "../config.json";
 
 function Recipe(props){
 
@@ -15,7 +16,7 @@ function Recipe(props){
   const inputElement = useRef();
   const navigate = useNavigate();
 
-  const api = process.env.REACT_APP_API;
+  const api = configData.EDAMAM_API;
   const apiId = process.env.REACT_APP_API_ID;
   const apiKeys = process.env.REACT_APP_API_KEYS;
 
