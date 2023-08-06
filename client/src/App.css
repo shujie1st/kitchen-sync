@@ -178,7 +178,7 @@ nav {
   height: 35px;
   width: 35px;
   right: 25px;
-  bottom: 25px;
+  bottom: 35px;
   position: fixed;
   cursor: pointer;
 }
@@ -210,4 +210,9 @@ nav {
 .user-preferences {
   border: 2px solid aqua;
   width: 35%;
+}
+
+.footer {
+  display: flex;
+  justify-content: end;
 }

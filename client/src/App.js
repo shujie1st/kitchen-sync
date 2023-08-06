@@ -9,6 +9,7 @@ import Login from './components/Login';
 import ScrollButton from './components/ScrollButton';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Profile from './components/Profile';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -85,6 +86,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <ScrollButton />
+      <Footer />
     </div>
   );
 }
