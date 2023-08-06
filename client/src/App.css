@@ -150,6 +150,10 @@ nav {
   padding-left: 0;
 }
 
+.recipe-card .favorite-icon div {
+  cursor: pointer;
+}
+
 .load-more {
   display: flex;
   justify-content: center;
