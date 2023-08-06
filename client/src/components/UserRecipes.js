@@ -102,7 +102,7 @@ function UserRecipes() {
   return (
     <section className="user-recipes">
       <Card body>Favorite Recipes</Card>
-      <section className="saved-recipe-cards">
+      <section className="recipe-cards">
         {savedRecipes.map((recipe, index) => {
           return <SavedRecipeCard key={index} recipe={recipe} deleteSavedRecipe={deleteSavedRecipe} />
         })}

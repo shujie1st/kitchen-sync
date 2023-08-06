@@ -184,7 +184,7 @@ nav {
   display: flex;
   flex-direction: row;
   border: 2px solid royalblue;
-  height: 500px;
+  min-height: 500px;
   gap: 5px;
   padding: 5px;
 }
