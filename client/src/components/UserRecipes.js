@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import SavedRecipeCard from './SavedRecipeCard';
+import configData from "../config.json";
 
 function UserRecipes() {
   const [recipeUris, setRecipeUris] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState([]);
 
-  const apiByUri = process.env.REACT_APP_API_BY_URI;
+  const apiByUri = configData.EDAMAM_API_BY_URI;
   const apiId = process.env.REACT_APP_API_ID;
   const apiKeys = process.env.REACT_APP_API_KEYS;
   
