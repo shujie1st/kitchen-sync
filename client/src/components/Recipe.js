@@ -207,7 +207,10 @@ function Recipe(props){
       <Container>
         <Row>
           <Col sm={12}>
-            <Form className="d-flex search">
+            <Form className="d-flex search" onSubmit={(event) => {
+              event.preventDefault();
+              searchRecipesByKeywords(inputElement.current.value);
+            }}>
               <Form.Control
                 type="search"
                 placeholder="Search recipes"
@@ -215,7 +218,7 @@ function Recipe(props){
                 aria-label="Search"
                 ref={inputElement}
               />
-              <Button onClick={() => searchRecipesByKeywords(inputElement.current.value)}>
+              <Button type="submit">
                 Search
               </Button>
             </Form>
