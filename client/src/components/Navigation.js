@@ -9,6 +9,8 @@ function Navigation(props){
     try {
       const response = await fetch("http://localhost:3001/logout", {
         method: "POST",
+        mode: "cors",
+        credentials: "include"
       });
       
       if (response.status === 200) {
