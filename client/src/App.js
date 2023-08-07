@@ -10,6 +10,7 @@ import ScrollButton from './components/ScrollButton';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Profile from './components/Profile';
 import Footer from './components/Footer';
+import Signup from './components/Signup';
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
         <Navigation firstName={firstName} setFirstName={setFirstName} />
         <Routes>
           <Route path="/login" element={<Login setFirstName={setFirstName} />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile firstName={firstName} />} />
           <Route path="/" element={
             <main className="container-lg">
