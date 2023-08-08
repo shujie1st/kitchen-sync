@@ -4,7 +4,10 @@ function UserPreferences() {
 
   // database preferences
   const [preferences, setPreferences] = useState([])
-  const [selectedPrefs, setSelectedPrefs] = useState({});
+  
+
+  const initialPrefs = JSON.parse(localStorage.getItem('prefs')) || {};
+  const [selectedPrefs, setSelectedPrefs] = useState(initialPrefs);
 
 
   // fetch preferences from database
@@ -28,25 +31,33 @@ function UserPreferences() {
 
   useEffect(() => {
     fetchPreferences();
-  },[])
+    localStorage.setItem('prefs', JSON.stringify(selectedPrefs))
+  },[selectedPrefs])
 
   return (
     <section className="user-preferences">
-    All Preferences
-    
-    {preferences.map((pref) => {
-          if (!selectedPrefs[pref.name]) {
-            return <button key={pref.id} onClick={() => handleClick(pref.name)} >{pref.name}</button>;
-          }
-          return null;
-        })}
-    My Preferences
-    {preferences.map((pref) => {
+      <div>
+        <h4>My Preferences</h4>
+        <div>
+          {preferences.map((pref) => {
           if (selectedPrefs[pref.name]) {
             return <button key={pref.id} onClick={() => handleClick(pref.name)} >{pref.name}</button>;
           }
           return null;
         })}
+        </div>
+      </div>
+      <div>
+        <h4>All Preferences</h4>
+        <div>
+          {preferences.map((pref) => {
+          if (!selectedPrefs[pref.name]) {
+            return <button key={pref.id} onClick={() => handleClick(pref.name)} >{pref.name}</button>;
+          }
+          return null;
+        })}
+        </div>
+      </div>
     </section>
   )
 
