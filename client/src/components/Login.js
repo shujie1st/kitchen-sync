@@ -56,7 +56,7 @@ function Login(props){
             <Form className="login-form" onSubmit={handleSubmit}>
               
               <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" ref={inputEmail} />
               </Form.Group>
 

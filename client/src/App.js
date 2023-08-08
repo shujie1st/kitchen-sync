@@ -62,7 +62,7 @@ function App() {
         <Navigation firstName={firstName} setFirstName={setFirstName} />
         <Routes>
           <Route path="/login" element={<Login setFirstName={setFirstName} />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/register" element={<Signup setFirstName={setFirstName} />} />
           <Route path="/profile" element={<Profile firstName={firstName} />} />
           <Route path="/" element={
             <main className="container-lg">
