@@ -1,4 +1,4 @@
-import { Button, Form, Alert } from "react-bootstrap";
+import { Button, Form, Alert, Card } from "react-bootstrap";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {Link} from "react-router-dom"
@@ -47,25 +47,29 @@ function Login(props){
       <section className="login">
         {message && <Alert variant="danger">{message}</Alert>}
 
-        <Form className="login-form" onSubmit={handleSubmit}>
-          <h3>Login</h3>
+        <Card className='login-card'>
+          <Card.Body>
+            <h3>Login</h3>
 
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <br></br>
-            <Form.Control type="email" placeholder="Enter email" ref={inputEmail} />
-          </Form.Group>
+            <Form className="login-form" onSubmit={handleSubmit}>
+              
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" ref={inputEmail} />
+              </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <br></br>
-            <Form.Control type="password" placeholder="Password" ref={inputPassword} />
-          </Form.Group>
-          
-          <Button type="submit">
-            Submit
-          </Button>
-        </Form>
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" ref={inputPassword} />
+              </Form.Group>
+              
+              <Button type="submit">
+                Submit
+              </Button>
+            </Form>
+
+        </Card.Body>
+      </Card>
 
         <div className="home-page-link"><Link to="/">Back to Homepage</Link></div>
       </section>

@@ -35,9 +35,10 @@ nav {
   font-size: small;
 }
 
-.login-form {
-  padding-top: 30px;
-  padding-left: 200px;
+.login-card {
+  width: 35%;
+  margin-left: 200px;
+  margin-top: 30px
 }
 
 #formBasicEmail {
