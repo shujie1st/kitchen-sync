@@ -45,10 +45,12 @@ function Login(props){
 
   return ( 
       <section className="login">
-        {message && <Alert variant="danger">{message}</Alert>}
+
+        <div className="home-page-link"><Link to="/">Back to Homepage</Link></div>
 
         <Card className='login-card'>
           <Card.Body>
+            {message && <Alert variant="danger">{message}</Alert>}
             <h3>Login</h3>
 
             <Form className="login-form" onSubmit={handleSubmit}>
@@ -68,10 +70,9 @@ function Login(props){
               </Button>
             </Form>
 
-        </Card.Body>
-      </Card>
+          </Card.Body>
+        </Card>
 
-        <div className="home-page-link"><Link to="/">Back to Homepage</Link></div>
       </section>
   );
 }

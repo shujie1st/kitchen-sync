@@ -1,8 +1,11 @@
 import { Button, Card, Form } from 'react-bootstrap';
+import {Link} from "react-router-dom"
 
 function Signup() {
+
   return (
     <section className="signup">
+      <div className="home-page-link"><Link to="/">Back to Homepage</Link></div>
        
       <Card className='signup-card'>
         <Card.Body>
@@ -42,6 +45,7 @@ function Signup() {
       
         </Card.Body>
       </Card>
+
     </section>
   )
 
