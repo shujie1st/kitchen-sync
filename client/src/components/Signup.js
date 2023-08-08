@@ -4,18 +4,18 @@ function Signup() {
   return (
     <section className="signup">
        
-      <Card>
+      <Card className='signup-card'>
         <Card.Body>
           <h3>Sign Up</h3>
             
-          <Form className='signup-from'>
+          <Form className='signup-form'>
             
-            <Form.Group controlId="first-name">
+            <Form.Group controlId="name">
               <Form.Label>First Name</Form.Label>
               <Form.Control type="text" placeholder="Enter First Name" />
             </Form.Group>
 
-            <Form.Group controlId="last-name">
+            <Form.Group controlId="name">
               <Form.Label>Last Name</Form.Label>
               <Form.Control type="text" placeholder="Enter Last Name" />
             </Form.Group>

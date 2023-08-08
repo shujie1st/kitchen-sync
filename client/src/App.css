@@ -41,13 +41,24 @@ nav {
 }
 
 #formBasicEmail {
-  width: 30%;
-  margin-bottom: 5px;
+  width: 95%;
+  margin-bottom: 10px;
 }
 
 #formBasicPassword {
-  width: 30%;
-  margin-bottom: 15px;
+  width: 95%;
+  margin-bottom: 10px;
+}
+
+.signup-card {
+  width: 35%;
+  margin-left: 200px;
+  margin-top: 30px
+}
+
+#name {
+  width: 95%;
+  margin-bottom: 10px;
 }
 
 .home-page-link {
