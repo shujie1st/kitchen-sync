@@ -5,9 +5,11 @@ function UserPreferences() {
   // database preferences
   const [preferences, setPreferences] = useState([])
   
-
-  const initialPrefs = JSON.parse(localStorage.getItem('prefs')) || {};
+  // Load initialPrefs from local storage or set it as an empty object
+  // const initialPrefs = JSON.parse(localStorage.getItem('prefs')) || {};
+  const initialPrefs = JSON.parse(localStorage.getItem('prefs')) || [];
   const [selectedPrefs, setSelectedPrefs] = useState(initialPrefs);
+  const [unselectedPrefs, setUnselectedPrefs] = useState([]);
 
 
   // fetch preferences from database
@@ -20,17 +22,27 @@ function UserPreferences() {
       console.error(error.message)
     }
   }
+  
 
-  const handleClick = (prefName) => {
-    setSelectedPrefs((prevSelectedPrefs) => ({
-      ...prevSelectedPrefs,
-      [prefName]: !prevSelectedPrefs[prefName],
-    }));
-  }
+  const handlePrefClick = (prefName) => {
+    if (selectedPrefs.includes(prefName)) {
+      // remove from selected and add to unselected
+      setSelectedPrefs(selectedPrefs.filter((pref) => pref !== prefName));
+      setUnselectedPrefs([...unselectedPrefs, prefName]);
+    } else {
+      // remove from unselected and add to selected
+      setUnselectedPrefs(unselectedPrefs.filter((pref) => pref !== prefName));
+      setSelectedPrefs([...selectedPrefs, prefName]);
+    }
+  };
 
-
+  // fetch prefs when component mounts
   useEffect(() => {
     fetchPreferences();
+  },[])
+
+  // save selectedPrefs to local storage upon change
+  useEffect(() => { 
     localStorage.setItem('prefs', JSON.stringify(selectedPrefs))
   },[selectedPrefs])
 
@@ -39,23 +51,31 @@ function UserPreferences() {
       <div>
         <h4>My Preferences</h4>
         <div>
-          {preferences.map((pref) => {
-          if (selectedPrefs[pref.name]) {
-            return <button key={pref.id} onClick={() => handleClick(pref.name)} >{pref.name}</button>;
-          }
-          return null;
-        })}
+         {preferences.map((pref) => (
+            selectedPrefs.includes(pref.name) && (
+              <button
+                key={pref.id}
+                onClick={() => handlePrefClick(pref.name)}
+              >
+                {pref.name}
+              </button>
+            )
+          ))}
         </div>
       </div>
       <div>
         <h4>All Preferences</h4>
         <div>
-          {preferences.map((pref) => {
-          if (!selectedPrefs[pref.name]) {
-            return <button key={pref.id} onClick={() => handleClick(pref.name)} >{pref.name}</button>;
-          }
-          return null;
-        })}
+          {preferences.map((pref) => (
+            !selectedPrefs.includes(pref.name) && (
+              <button
+                key={pref.id}
+                onClick={() => handlePrefClick(pref.name)}
+              >
+                {pref.name}
+              </button>
+            )
+          ))}
         </div>
       </div>
     </section>
