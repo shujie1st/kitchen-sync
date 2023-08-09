@@ -37,6 +37,7 @@ nav {
 
 .login {
   display: flex;
+  margin-bottom: 90px;
 }
 
 .login-card {

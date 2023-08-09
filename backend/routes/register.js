@@ -5,6 +5,10 @@ const { getUserByEmail, createUser } = require('../db/queries/users');
 router.post('/', async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
+
+    if (!firstName || !lastName || !email || !password) {
+      throw new Error("Bad request.")
+    }
     
     // Check if user already exists
     const existingUser = await getUserByEmail(email);

@@ -32,7 +32,7 @@ function Signup(props) {
           body: JSON.stringify({
             firstName: inputFirstName.current.value,
             lastName: inputLastName.current.value, 
-            email: inputEmail.current.value,
+            email: inputEmail.current.value.toLowerCase(),
             password: inputPassword.current.value
           }),
         });
@@ -99,7 +99,6 @@ function Signup(props) {
 
     </section>
   )
-
 }
 
 export default Signup;
