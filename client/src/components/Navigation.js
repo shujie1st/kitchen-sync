@@ -31,7 +31,7 @@ function Navigation(props){
 
       <div className="nav-right">
         {props.firstName && <div className="nav-welcome"><span>Welcome <Link to="/profile">{props.firstName}</Link></span><button className="logout" onClick={logout}>Logout</button></div>}
-        {!props.firstName && <Link to="/login">Login</Link>}
+        {!props.firstName && <div><Link to="/login">Login</Link> / <Link to="/register">Sign Up</Link></div>}
       </div>
     </nav>
   );

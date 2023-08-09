@@ -12,16 +12,27 @@ const getUserByEmail = (email) => {
     });
 };
 
+// Create a new user
+const createUser = (firstName, lastName, email, password) => {
+  const query = `
+    INSERT INTO users (first_name, last_name, email, password)
+    VALUES ($1, $2, $3, $4)
+    RETURNING *;
+  `;
+  return db.query(query, [firstName, lastName, email, password])
+    .then((res) => res.rows[0]);
+};
+
 // Retrieve saved recipes by userId
 const getRecipesByUserId = (userId) => {
   return db.query('SELECT * FROM user_recipes WHERE user_id = $1;', [userId])
-  .then(data => {
-    if (data.rowCount === 0) {
-      return [];
-    } else {
-      return data.rows;
+    .then(data => {
+      if (data.rowCount === 0) {
+        return [];
+      } else {
+        return data.rows;
+      }
     }
-  }
 
   );
 };
@@ -40,4 +51,4 @@ const deleteRecipe = (recipeId, userId) => {
   [recipeId, userId])    
 };
 
-module.exports = { getUserByEmail, getRecipesByUserId, saveRecipe, deleteRecipe };
+module.exports = { getUserByEmail, createUser, getRecipesByUserId, saveRecipe, deleteRecipe };

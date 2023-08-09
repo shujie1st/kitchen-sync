@@ -35,24 +35,45 @@ nav {
   font-size: small;
 }
 
-.login-form {
-  padding-top: 30px;
-  padding-left: 200px;
+.login {
+  display: flex;
+  margin-bottom: 90px;
+}
+
+.login-card {
+  width: 35%;
+  margin-left: 40px;
+  margin-top: 25px
 }
 
 #formBasicEmail {
-  width: 30%;
-  margin-bottom: 5px;
+  width: 95%;
+  margin-bottom: 10px;
 }
 
 #formBasicPassword {
-  width: 30%;
-  margin-bottom: 15px;
+  width: 95%;
+  margin-bottom: 10px;
+}
+
+.signup {
+  display: flex;
+}
+
+.signup-card {
+  width: 35%;
+  margin-left: 40px;
+  margin-top: 25px
+}
+
+#name {
+  width: 95%;
+  margin-bottom: 10px;
 }
 
 .home-page-link {
-  padding-top: 40px;
-  padding-left: 200px;
+  padding-top: 25px;
+  padding-left: 55px;
 }
 
 .container-lg {
