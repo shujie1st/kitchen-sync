@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 
-function UserPreferences(props) {
-  const { userID } = props
+function UserPreferences() {
+  const userID = 1
+  
+  // database userPrefs
   const [userPrefs, setUserPrefs] = useState([])
   // database preferences
   const [preferences, setPreferences] = useState([])
@@ -9,11 +11,12 @@ function UserPreferences(props) {
   // fetch user_preferences from database
   const fetchUserPreferences = async () => {
     try {
-      const response = await fetch(`/user_preferences/${userID}`);
+      const response = await fetch(`http://localhost:3001/user_preferences`);
       const jsonData = await response.json();
-      setUserPrefs(jsonData)
+      const userPrefsByID = jsonData.rows.filter(item => item.user_id === userID)
+      setUserPrefs(userPrefsByID)
     } catch (error) {
-      
+      console.error(error.message)
     }
   }
 
@@ -42,8 +45,8 @@ function UserPreferences(props) {
     <section className="user-preferences">
       <div>
         My Preferences
-        {userPrefs.map((pref) => {
-          return <button key={pref.id}>{pref.name}</button>
+        {userPrefs.map((pref, index) => {
+          return <button key={index}>{pref.name}</button>
         })}
       </div>
       <div>
