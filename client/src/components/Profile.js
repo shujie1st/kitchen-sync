@@ -5,7 +5,7 @@ import {Link} from "react-router-dom"
 function Profile(props) {
   return (
     <section className="profile">
-      <div className="profile-message">This is the pofile page for: {props.firstName} <br/><Link to="/">Back to Homepage</Link></div>
+      <div className="profile-message">This is the pofile page for: {props.firstName} <br/><Link style={{color:"#32324D"}} to="/">Back to Homepage</Link></div>
       <UserRecipes />
       <UserPreferences />
     </section>
