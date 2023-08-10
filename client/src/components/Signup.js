@@ -55,7 +55,7 @@ function Signup(props) {
 
   return (
     <section className="signup">
-      <div className="home-page-link"><Link to="/">Back to Homepage</Link></div>
+      <div className="home-page-link"><Link style={{color:"#32324D"}} to="/">Back to Homepage</Link></div>
        
       <Card className='signup-card'>
         <Card.Body>
