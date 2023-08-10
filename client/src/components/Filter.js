@@ -17,7 +17,6 @@ function Filter(props){
             {ingredientName}
           </button>
   })
-
   setIngredientsList(getIngredientsList)
   },[filteredList, removeItemFromFilterList])
 

@@ -43,7 +43,7 @@ function App() {
     // update ingredient to remove from the Ingredients component
     setFilter(clickedItem)
   }
-
+  
 
   useEffect(() => {
     // Save selectedIngredients to local storage whenever it changes

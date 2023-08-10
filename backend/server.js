@@ -30,6 +30,7 @@ const loginRoutes = require('./routes/login');
 const logoutRoutes = require('./routes/logout');
 const registerRoutes = require('./routes/register');
 const userRecipesRoutes = require('./routes/user_recipes');
+const userPreferencesRoutes = require('./routes/user_preferences');
 
 // Mount all resource routes
 app.use('/', indexRoutes);
@@ -37,6 +38,7 @@ app.use('/login', loginRoutes);
 app.use('/logout', logoutRoutes);
 app.use('/register', registerRoutes);
 app.use('/user_recipes', userRecipesRoutes)
+app.use('/user_preferences', userPreferencesRoutes)
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
