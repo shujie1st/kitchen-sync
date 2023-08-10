@@ -20,6 +20,7 @@ function Recipe(props){
     fetch(url)
       .then(response => response.json())
       .then(data => {
+        console.log("data: ", data)
         setLoadMoreUrl(data["_links"].next.href);
         setRecipes(prev => [...prev,
           ...data.hits.map(each => {
