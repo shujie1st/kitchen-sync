@@ -1,15 +1,22 @@
+#root {
+  background-image: url("https://www.transparenttextures.com/patterns/brilliant.png");
+  color: #32324D;
+}
+
 nav {
-	height: 80px;
+	height: 90px;
 	width: 100%;
 	display: flex;
   justify-content: space-between;
-  border: 2px solid royalblue;
+  background-color: #81BAB4;
+  color: #FFFFFF;
 }
 
 .nav-text {
   margin-left: 50px;
-  font-size: 30px;
+  font-size: 35px;
   align-self: center;
+  font-family: 'Comic Neue', cursive;
 }
 
 .nav-right {
@@ -17,7 +24,9 @@ nav {
   margin-right: 20px;
   align-self: flex-end;
   margin-bottom: 10px;
+  color: #e6ebf2;
 }
+
 
 .nav-welcome {
   display: flex;
@@ -29,70 +38,128 @@ nav {
 
 .nav-welcome span {
   font-style: italic;
+  font-weight: bold;
+  color: #32324D;
 }
 
 .logout {
   font-size: small;
+  background-color: #E6EBF3;
+  border: none;
+  border-radius: 5px;
+  color: #32324D;
 }
 
-.login-form {
-  padding-top: 30px;
-  padding-left: 200px;
+.login {
+  display: flex;
+  margin-bottom: 90px;
+}
+
+.login-card {
+  width: 35%;
+  margin-left: 40px;
+  margin-top: 25px;
+}
+
+.login-card button {
+  background-color: #81BAB4;
+  border: none;
 }
 
 #formBasicEmail {
-  width: 30%;
-  margin-bottom: 5px;
+  width: 95%;
+  margin-bottom: 10px;
 }
 
 #formBasicPassword {
-  width: 30%;
-  margin-bottom: 15px;
+  width: 95%;
+  margin-bottom: 10px;
+}
+
+.signup {
+  display: flex;
+}
+
+.signup-card {
+  width: 35%;
+  margin-left: 40px;
+  margin-top: 25px;
+  color: #32324D;
+}
+
+.signup-card button {
+  background-color: #81BAB4;
+  border: none;
+}
+
+#name {
+  width: 95%;
+  margin-bottom: 10px;
 }
 
 .home-page-link {
-  padding-top: 40px;
-  padding-left: 200px;
+  padding-top: 25px;
+  padding-left: 55px;
 }
 
 .container-lg {
 	display: flex;
-  border: 2px solid royalblue;
   margin: 5px;
 }
 
 .ingredients {
 	width: 21%;
-  border: 2px solid aqua;
   margin: 5px;
+  padding: 5px;
   text-align: center;
+  border-radius: 5px;
+  border: 1px solid #807E7D;
 }
 
 .ingredients button {
   font-size: 8px;
 }
 
+.ingredients input:focus-visible {
+  outline: #81BAB4 auto 1px;
+}
+
 .container-center {
   width: 65%;
-  border: 2px solid aqua;
   margin: 5px;
+  border-radius: 5px;
 }
 
 .preferences {
-  height: 80px;
-  border: 2px solid fuchsia;
+  padding: 5px;
+  height: 120px;
   margin: 5px;
   text-align: center;
+  border-radius: 5px;
 }
 
 .recipes {
-  border: 2px solid fuchsia;
   margin: 5px;
   padding-top: 5px;
 }
 
 .search button {
   font-size: small;
+  background-color: #81BAB4;
+  border: none;
+  }
+
+button.btn:hover {
+  background-color: #FBD180;
+}
+
+button.btn:active {
+  background-color: #FBD180 !important;
+}
+
+input.form-control:focus {
+  border-color:  #BAD7CB;
+  box-shadow: 0 0 0 0.2rem #BAD7CB;
 }
 
 .recipe-cards {
@@ -150,6 +217,10 @@ nav {
   padding-left: 0;
 }
 
+.recipe-card .favorite-icon div {
+  cursor: pointer;
+}
+
 .load-more {
   display: flex;
   justify-content: center;
@@ -157,13 +228,16 @@ nav {
 
 .load-more button {
   width: 100%;
+  background-color: #81BAB4;
+  border: none;
 }
 
 .filters {
 	width: 15%;
-  border: 2px solid aqua;
   margin: 5px;
   text-align: center;
+  border-radius: 5px;
+  border: 1px solid #807E7D;
 }
 
 .filters button {
@@ -174,17 +248,17 @@ nav {
   height: 35px;
   width: 35px;
   right: 25px;
-  bottom: 25px;
+  bottom: 35px;
   position: fixed;
   cursor: pointer;
+  color: #32324D;;
 }
 
 .profile {
   margin: 5px;
   display: flex;
   flex-direction: row;
-  border: 2px solid royalblue;
-  height: 500px;
+  min-height: 500px;
   gap: 5px;
   padding: 5px;
 }
@@ -195,7 +269,6 @@ nav {
   gap: 50px;
   border: 2px solid aqua;
   width: 25%;
-
 }
 
 .user-recipes {
@@ -206,4 +279,9 @@ nav {
 .user-preferences {
   border: 2px solid aqua;
   width: 35%;
+}
+
+.footer {
+  display: flex;
+  justify-content: end;
 }

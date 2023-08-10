@@ -1,19 +1,20 @@
+-- All the preferences below belong to the type "health" in API request
 -- Allergies
-INSERT INTO preferences (name) VALUES ('Dairy-free');
-INSERT INTO preferences (name) VALUES ('Peanut-free');
-INSERT INTO preferences (name) VALUES ('Shellfish-free');
-INSERT INTO preferences (name) VALUES ('Gluten-free');
-INSERT INTO preferences (name) VALUES ('Sesame-free');
-INSERT INTO preferences (name) VALUES ('Soy-free');
-INSERT INTO preferences (name) VALUES ('Wheat-free');
+INSERT INTO preferences (name) VALUES ('dairy-free');
+INSERT INTO preferences (name) VALUES ('peanut-free');
+INSERT INTO preferences (name) VALUES ('shellfish-free');
+INSERT INTO preferences (name) VALUES ('gluten-free');
+INSERT INTO preferences (name) VALUES ('sesame-free');
+INSERT INTO preferences (name) VALUES ('soy-free');
+INSERT INTO preferences (name) VALUES ('wheat-free');
 -- Diets
-INSERT INTO preferences (name) VALUES ('Keto');
-INSERT INTO preferences (name) VALUES ('Kosher');
-INSERT INTO preferences (name) VALUES ('No-sugar');
-INSERT INTO preferences (name) VALUES ('Paleo');
-INSERT INTO preferences (name) VALUES ('Pescatarian');
-INSERT INTO preferences (name) VALUES ('Pork-free');
-INSERT INTO preferences (name) VALUES ('Red meat-free');
-INSERT INTO preferences (name) VALUES ('Vegan');
-INSERT INTO preferences (name) VALUES ('Vegetarian');
+INSERT INTO preferences (name) VALUES ('keto-friendly');
+INSERT INTO preferences (name) VALUES ('kosher');
+INSERT INTO preferences (name) VALUES ('low-sugar');
+INSERT INTO preferences (name) VALUES ('paleo');
+INSERT INTO preferences (name) VALUES ('pescatarian');
+INSERT INTO preferences (name) VALUES ('pork-free');
+INSERT INTO preferences (name) VALUES ('red-meat-free');
+INSERT INTO preferences (name) VALUES ('vegan');
+INSERT INTO preferences (name) VALUES ('vegetarian');
 

@@ -1,8 +1,6 @@
-import Card from 'react-bootstrap/Card';
-import { FaRegHeart } from "@react-icons/all-files/fa/FaRegHeart";
-import { FaHeart} from "@react-icons/all-files/fa/FaHeart";
+import { Card, CloseButton } from 'react-bootstrap';
 
-function RecipeCard(props){
+function SavedRecipeCard(props){
 
   return (
     <Card className='recipe-card'>
@@ -16,13 +14,11 @@ function RecipeCard(props){
           from <Card.Link href={props.recipe.websiteLink} target="_blank">{props.recipe.websiteName}</Card.Link>
         </Card.Text>
       </Card.Body>
-      <Card.Body className='favorite-icon'>
-        <div onClick={() => props.favoriteIconClicked(props.recipe)} >
-          {props.isFavorite ? <FaHeart style={{color: "red"}}/> : <FaRegHeart />}
-        </div> 
+      <Card.Body className='delete-recipe'>
+        <CloseButton onClick={() => props.deleteSavedRecipe(props.recipe)} />
       </Card.Body>  
     </Card>
   );
 }
 
-export default RecipeCard;
+export default SavedRecipeCard;

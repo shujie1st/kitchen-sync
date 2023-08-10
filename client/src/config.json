@@ -1,0 +1,4 @@
+{
+  "EDAMAM_API": "https://api.edamam.com/api/recipes/v2?type=public",
+  "EDAMAM_API_BY_URI": "https://api.edamam.com/api/recipes/v2/by-uri?type=public"
+}

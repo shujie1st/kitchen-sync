@@ -1,4 +1,4 @@
-import { Button, Form, Alert } from "react-bootstrap";
+import { Button, Form, Alert, Card } from "react-bootstrap";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {Link} from "react-router-dom"
@@ -45,29 +45,34 @@ function Login(props){
 
   return ( 
       <section className="login">
-        {message && <Alert variant="danger">{message}</Alert>}
 
-        <Form className="login-form" onSubmit={handleSubmit}>
-          <h3>Login</h3>
+        <div className="home-page-link"><Link style={{color:"#32324D"}} to="/">Back to Homepage</Link></div>
 
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <br></br>
-            <Form.Control type="email" placeholder="Enter email" ref={inputEmail} />
-          </Form.Group>
+        <Card className='login-card'>
+          <Card.Body>
+            {message && <Alert variant="danger">{message}</Alert>}
+            <h3>Login</h3>
 
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <br></br>
-            <Form.Control type="password" placeholder="Password" ref={inputPassword} />
-          </Form.Group>
-          
-          <Button type="submit">
-            Submit
-          </Button>
-        </Form>
+            <Form className="login-form" onSubmit={handleSubmit}>
+              
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" ref={inputEmail} />
+              </Form.Group>
 
-        <div className="home-page-link"><Link to="/">Back to Homepage</Link></div>
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" ref={inputPassword} />
+              </Form.Group>
+              
+              <Button type="submit">
+                Submit
+              </Button>
+            </Form>
+
+          </Card.Body>
+        </Card>
+
       </section>
   );
 }
