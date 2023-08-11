@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 
 function Filter(props){
-  const { filteredList, removeItemFromFilterList } = props
-  const [ingredientsList, setIngredientsList] = useState([]);
+  const { filteredList, removeItemFromFilterList, userPrefs } = props
+  // const [ingredientsList, setIngredientsList] = useState([]);
+  const allIngredientsAndPrefs = [...filteredList, ...userPrefs.map(pref => pref.name)]
+
 
   const handleRemoveIngredient = (ingredientName) => {
     const removedIngredient = filteredList.filter((ingredient) => ingredient !== ingredientName);
@@ -10,14 +12,15 @@ function Filter(props){
     removeItemFromFilterList(removedIngredient);
   }
 
+  const filterButtons = allIngredientsAndPrefs.map((item, index) => (
+    <button key={index} onClick={() => handleRemoveIngredient(item)}>
+      {item}
+    </button>
+  ))
+
 
   useEffect(() => {
-    const getIngredientsList = filteredList.map(ingredientName => {
-    return <button key={ingredientName} onClick={() => handleRemoveIngredient(ingredientName)} >
-            {ingredientName}
-          </button>
-  })
-  setIngredientsList(getIngredientsList)
+
   },[filteredList, removeItemFromFilterList])
 
   
@@ -25,7 +28,9 @@ function Filter(props){
   return ( 
       <section className="filters">
         Filter component
-        {ingredientsList}
+        <div>
+          {filterButtons}
+        </div> 
       </section>
   );
 }

@@ -47,6 +47,8 @@ function UserPreferences() {
     try {
       const response = await fetch (`http://localhost:3001/user_preferences/add`, {
       method: 'POST',
+      mode: "cors",
+      credentials: "include",
       headers: {
         'Content-Type': 'application/json',
       },
@@ -70,6 +72,8 @@ function UserPreferences() {
     try {
       const response = await fetch (`http://localhost:3001/user_preferences/remove`, {
         method: 'POST',
+        mode: "cors",
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json',
         },
@@ -96,9 +100,11 @@ function UserPreferences() {
     <section className="user-preferences">
       <div>
         My Preferences
-        {userPrefs.map((pref, index) => {
-          return <button key={index} onClick={() => removePref(pref.id)} >{pref.name}</button>
-        })}
+        <div>
+          {userPrefs.map((pref, index) => {
+            return <button key={index} onClick={() => removePref(pref.id)} >{pref.name}</button>
+          })}
+        </div>
       </div>
       <div>
         All Preferences

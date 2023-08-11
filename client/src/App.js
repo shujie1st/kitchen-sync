@@ -14,16 +14,23 @@ import Signup from './components/Signup';
 
 
 function App() {
+  // temporarily hardcoding userID
+  const userID = 1;
+
  // Pass filters props between sibling components, Ingrdient/Preference & Filter
  // Load filters from local storage on initial render
   const initialFilter = JSON.parse(localStorage.getItem('selectedFilters')) || [];
   const [filter, setFilter] = useState(initialFilter);
-
+  const [userPrefs, setUserPrefs] = useState([]);
 
   // Load logged in user first name from local storage, use "" as initial render if user not logged in
   const loggedinFirstName = localStorage.getItem('firstName') || "";
   const [firstName, setFirstName] = useState(loggedinFirstName);
 
+  useEffect(() => {
+    // Save firstName to local storage whenever it changes
+    localStorage.setItem('firstName', firstName);
+  }, [firstName]);
 
   // callback to get the selectedIngredients list from the Ingredients component
   const getSelectedIngredients = (selectedIngredients) => {
@@ -44,16 +51,29 @@ function App() {
     setFilter(clickedItem)
   }
   
-
   useEffect(() => {
     // Save selectedIngredients to local storage whenever it changes
     localStorage.setItem('selectedFilters', JSON.stringify(filter));
   }, [filter]);
 
   useEffect(() => {
-    // Save firstName to local storage whenever it changes
-    localStorage.setItem('firstName', firstName);
-  }, [firstName]);
+    if (userID) {
+      fetchUserPreferences();
+    }
+  },[userID]);
+
+
+  // fetch userPrefs from database
+  const fetchUserPreferences = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/user_preferences`);
+      const jsonData = await response.json();
+      const userPrefsByID = jsonData.rows.filter(item => item.user_id === userID)
+      setUserPrefs(userPrefsByID);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
 
 
   return (
@@ -82,6 +102,7 @@ function App() {
               <Filter 
                 filteredList={filter}
                 removeItemFromFilterList={removeItemFromFilterList} 
+                userPrefs={userPrefs}
               />
             </main> 
           } />
