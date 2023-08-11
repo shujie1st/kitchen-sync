@@ -80,7 +80,7 @@ const Ingredient = (props) => {
 
   return ( 
       <section className="ingredients">
-        <form>
+        <div>
           <input 
             type="text" 
             placeholder="Search ingredients"
@@ -92,7 +92,7 @@ const Ingredient = (props) => {
             ? filteredResultsArray.slice(0, 5)
             : ingredientsSearch && noResultsMessage}
           </div>
-        </form>
+        </div>
         <div>
           <h4>Vegetables & Greens</h4>  
             {getIngredientsByCategory(1)}      
