@@ -1,6 +1,6 @@
 #root {
   background-image: url("https://www.transparenttextures.com/patterns/brilliant.png");
-  color: #32324D;
+  color: #1b1b1b;
 }
 
 nav {
@@ -8,8 +8,10 @@ nav {
 	width: 100%;
 	display: flex;
   justify-content: space-between;
-  background-color: #81BAB4;
+  background-color: #97af8f;
   color: #FFFFFF;
+  box-shadow: 0 2.5px 2px 0 rgba(0,0,0,.2);
+  margin-bottom: 20px;
 }
 
 .nav-text {
@@ -17,6 +19,7 @@ nav {
   font-size: 35px;
   align-self: center;
   font-family: 'Comic Neue', cursive;
+  text-shadow: 1.5px 1.5px rgb(114, 106, 106);
 }
 
 .nav-right {
@@ -24,7 +27,7 @@ nav {
   margin-right: 20px;
   align-self: flex-end;
   margin-bottom: 10px;
-  color: #e6ebf2;
+  color: #f6f6f6;
 }
 
 
@@ -39,15 +42,15 @@ nav {
 .nav-welcome span {
   font-style: italic;
   font-weight: bold;
-  color: #32324D;
+  color: #1b1b1b;
 }
 
 .logout {
   font-size: small;
-  background-color: #E6EBF3;
+  background-color: #F6F6F6;
   border: none;
   border-radius: 5px;
-  color: #32324D;
+  color: #1b1b1b;
 }
 
 .login {
@@ -62,7 +65,7 @@ nav {
 }
 
 .login-card button {
-  background-color: #81BAB4;
+  background-color: #97af8f;
   border: none;
 }
 
@@ -84,11 +87,11 @@ nav {
   width: 35%;
   margin-left: 40px;
   margin-top: 25px;
-  color: #32324D;
+  color: #1b1b1b;
 }
 
 .signup-card button {
-  background-color: #81BAB4;
+  background-color: #97af8f;
   border: none;
 }
 
@@ -108,20 +111,59 @@ nav {
 }
 
 .ingredients {
-	width: 21%;
-  margin: 5px;
-  padding: 5px;
+	width: 22%;
+  margin-top: 5px;
+  padding-top: 15px;
+  padding-bottom: 25px;
+  padding-left: 8px;
+  padding-right: 8px;
   text-align: center;
-  border-radius: 5px;
-  border: 1px solid #807E7D;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  height: fit-content;
 }
 
-.ingredients button {
-  font-size: 8px;
+.ingredients input {
+  border-radius: 5px;
+  height: 30px;
+  border: 1px solid #b8c9e9;
+  background-color: white;
+}
+
+.ingredients input::placeholder {
+  color: rgb(142, 139, 139);
 }
 
 .ingredients input:focus-visible {
-  outline: #81BAB4 auto 1px;
+  outline: #c1cdde auto 1.5px;
+}
+
+.ingredients card {
+  display: flex;
+
+}
+
+.ingredients h4 {
+  margin-top: 25px;
+  font-size: 15px;
+  color: #596d94;
+}
+
+.ingredients button {
+  font-size: 9px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e7edf8;
+  color: #1b1b1b;
+  margin-top:8px;
+  margin-right: 2.5px;
+}
+
+.ingredients button:hover {
+  background-color: #eacbd1;
+  color: white;
 }
 
 .container-center {
@@ -131,50 +173,73 @@ nav {
 }
 
 .preferences {
-  padding: 5px;
   height: 120px;
-  margin: 5px;
   text-align: center;
+  padding-top: 10px;
+}
+
+.preferences button {
+  border: 1px solid #97af8f;
   border-radius: 5px;
+  background-color: transparent;
+  color: #62735d;
+  font-size: small;
+  margin: 3px;
+}
+
+.preferences button:hover {
+  background-color: #97af8f;
+  color: #FFFFFF;
 }
 
 .recipes {
   margin: 5px;
-  padding-top: 5px;
 }
 
 .search button {
   font-size: small;
-  background-color: #81BAB4;
+  background-color: #97af8f;
   border: none;
   }
 
 button.btn:hover {
-  background-color: #FBD180;
+  color: #1b1b1b;
+  background-color: #e5f7e0; 
 }
 
 button.btn:active {
-  background-color: #FBD180 !important;
+  background-color: #ccefc1 !important;
+}
+
+input.form-control {
+  background-color: #F6F6F6;
+  border: 1px solid #97af8f;
+}
+
+input.form-control::placeholder {
+  color: rgb(142, 139, 139);
 }
 
 input.form-control:focus {
-  border-color:  #BAD7CB;
-  box-shadow: 0 0 0 0.2rem #BAD7CB;
+  border-color: #d4e0ee;
+  box-shadow: 0 0 0 0.1rem #d4e0ee;
 }
 
 .recipe-cards {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
-  padding-top: 10px;
+  padding-top: 30px;
 }
 
 .recipe-cards .recipe-card {
   width: 275px;
-  height: 102px;
+  height: 100px;
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .recipe-card .card-img-left {
@@ -210,6 +275,10 @@ input.form-control:focus {
   bottom: 8px;
 }
 
+.recipe-card .card-link {
+  color: #3c70be;
+}
+
 .recipe-card .favorite-icon {
   width: 30px;
   padding-top: 10px ;
@@ -228,20 +297,28 @@ input.form-control:focus {
 
 .load-more button {
   width: 100%;
-  background-color: #81BAB4;
+  background-color: #97af8f;
   border: none;
 }
 
 .filters {
-	width: 15%;
-  margin: 5px;
+	width: 18%;
+  margin-top: 5px;
   text-align: center;
-  border-radius: 5px;
-  border: 1px solid #807E7D;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .filters button {
-  font-size: 8px;
+  font-size: 9px;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  background-color: #c6ddbf;
+  color: #1b1b1b;
+  margin-top:10px;
+  margin-right: 3px;
 }
 
 #scroll-button {
@@ -251,7 +328,7 @@ input.form-control:focus {
   bottom: 35px;
   position: fixed;
   cursor: pointer;
-  color: #32324D;;
+  color: #3c70be;
 }
 
 .profile {

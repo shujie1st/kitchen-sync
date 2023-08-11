@@ -33,7 +33,7 @@ function Navigation(props){
       <span className="nav-text">KitchenSync</span>
 
       <div className="nav-right">
-        {props.firstName && <div className="nav-welcome"><span>Welcome <Link style={{color:"#FFBC29"}} to="/profile">{props.firstName}</Link></span><button className="logout" onClick={logout}>Logout</button></div>}
+        {props.firstName && <div className="nav-welcome"><span>Welcome <Link style={{color:"#1a5fc7"}} to="/profile">{props.firstName}</Link></span><button className="logout" onClick={logout}>Logout</button></div>}
         {!props.firstName && <div><Link style={{color:"#E6EBF2"}} to="/login">Login</Link> / <Link style={{color:"#e6ebf2"}} to="/register">Sign Up</Link></div>}
       </div>
     </nav>
