@@ -213,7 +213,7 @@ function Recipe(props){
             }}>
               <Form.Control
                 type="search"
-                placeholder="Search recipes"
+                placeholder="Search recipes..."
                 className="me-2"
                 aria-label="Search"
                 ref={inputElement}
