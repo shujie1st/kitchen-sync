@@ -6,7 +6,7 @@ const pool = require('../db/connection')
 router.get('/', async(req, res) => {
   try {
     const result = await pool.query(
-      `SELECT user_preferences.user_id, preferences.name
+      `SELECT user_preferences.user_id, preferences.name, preferences.id
       FROM user_preferences
       JOIN preferences ON user_preferences.preference_id = preferences.id`)
     return res.status(200).json(result)
