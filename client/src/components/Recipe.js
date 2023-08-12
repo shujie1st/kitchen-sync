@@ -193,7 +193,7 @@ function Recipe(props){
   useEffect(() => {
     if (preferenceNames.length > 0) {
       // set default keywords to render recipes
-      const defaultKeywords = 'tomato lettuce mushroom';
+      const defaultKeywords = 'salad';
       searchRecipesByKeywords(defaultKeywords);
 
       // get saveds recipes data by userId

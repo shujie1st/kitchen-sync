@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Card } from "react-bootstrap";
 import SavedRecipeCard from './SavedRecipeCard';
 import configData from "../config.json";
 
@@ -102,7 +101,7 @@ function UserRecipes() {
 
   return (
     <section className="user-recipes">
-      <Card body>Favorite Recipes</Card>
+      <div>Favorite Recipes</div>
       <section className="recipe-cards">
         {savedRecipes.map((recipe, index) => {
           return <SavedRecipeCard key={index} recipe={recipe} deleteSavedRecipe={deleteSavedRecipe} />
