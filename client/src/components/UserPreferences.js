@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-function UserPreferences(props) {
-  const { userID } = props
+function UserPreferences() {
+  // database userPrefs
   const [userPrefs, setUserPrefs] = useState([])
   // database preferences
   const [preferences, setPreferences] = useState([])
@@ -9,8 +9,15 @@ function UserPreferences(props) {
   // fetch user_preferences from database
   const fetchUserPreferences = async () => {
     try {
-      const response = await fetch(`/user_preferences/${userID}`);
+      const response = await fetch(`http://localhost:3001/user_preferences`, {
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        }})
       const jsonData = await response.json();
+      console.log("👉jsonData: ", jsonData)
       setUserPrefs(jsonData)
     } catch (error) {
       
@@ -20,7 +27,8 @@ function UserPreferences(props) {
   // fetch userPrefs when component mounts
   useEffect(() => {
     fetchUserPreferences();
-  },[userID])
+  },[])
+
 
   // fetch preferences from database
   const fetchPreferences = async () => {

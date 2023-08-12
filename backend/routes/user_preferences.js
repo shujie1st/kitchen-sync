@@ -4,35 +4,20 @@ const pool = require('../db/connection')
 
 // GET all user_preferences
 router.get('/', async(req, res) => {
+  const userId = req.session.userId;
   try {
     const result = await pool.query(
       `SELECT user_preferences.user_id, preferences.name
       FROM user_preferences
-      JOIN preferences ON user_preferences.preference_id = preferences.id`)
-    return res.status(200).json(result)
+      JOIN preferences ON user_preferences.preference_id = preferences.id
+      WHERE user_preferences.user_id = $1`, [userId])
+    return res.status(200).json(result.rows)
   } catch (error) {
     console.error(error.message)
     res.status(500).send('Internal server error');
   }
 })
 
-// GET user_preferences by user_id
-router.get('/:userID', async(req, res) => {
-  // const userID = req.params.userID;
-  const userID = req.session.userId;
-  try {
-    const result = await pool.query(
-      `SELECT user_preferences.user_id, preferences.name
-      FROM user_preferences
-      JOIN preferences ON user_preferences.preference_id = preferences.id
-      WHERE user_preferences.user_id = $1`, [userID])
-    const preferences = result.rows.map(row => row.name);
-    return res.status(200).json(preferences)
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Internal server error');
-  }
-})
 
 // POST/add a preference
 router.post('/add', async(req, res) => {
