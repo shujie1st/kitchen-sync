@@ -7,7 +7,7 @@ router.get('/', async(req, res) => {
   const userId = req.session.userId;
   try {
     const result = await pool.query(
-      `SELECT user_preferences.user_id, preferences.name
+      `SELECT user_preferences.user_id, preferences.name, preferences.id
       FROM user_preferences
       JOIN preferences ON user_preferences.preference_id = preferences.id
       WHERE user_preferences.user_id = $1`, [userId])
@@ -22,7 +22,8 @@ router.get('/', async(req, res) => {
 // POST/add a preference
 router.post('/add', async(req, res) => {
   const { userID, preferenceID } = req.body;
-
+  console.log("userID: ", userID)
+  console.log("preferenceID: ", preferenceID)
   try {
     // insert a new record into a user_preferences table
     await pool.query(`INSERT INTO user_preferences (user_id, preference_id) VALUES ($1, $2)`, [userID, preferenceID]);
