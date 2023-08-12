@@ -21,10 +21,10 @@ router.get('/', async(req, res) => {
 
 // POST/add a preference
 router.post('/add', async(req, res) => {
-  const { userId, preferenceID } = req.body;
+  const { userId, preferenceId } = req.body;
   try {
     // insert a new record into a user_preferences table
-    await pool.query(`INSERT INTO user_preferences (user_id, preference_id) VALUES ($1, $2)`, [userId, preferenceID]);
+    await pool.query(`INSERT INTO user_preferences (user_id, preference_id) VALUES ($1, $2)`, [userId, preferenceId]);
     res.status(201).send('Preference added successfully');
   } catch (error) {
     console.error(error.message);
@@ -34,11 +34,12 @@ router.post('/add', async(req, res) => {
 
 // POST/remove a preference
 router.post('/remove', async(req, res) => {
-  const { userID, preferenceID } = req.body;
+  const { userId, preferenceId } = req.body;
+
 
   try {
     // delete the record from the user_preference table
-    await pool.query(`DELETE FROM user_preferences WHERE user_id = $1 AND preference_id = $2`, [userID, preferenceID]);
+    await pool.query(`DELETE FROM user_preferences WHERE user_id = $1 AND preference_id = $2`, [userId, preferenceId]);
     res.status(200).send('Preference removed successfully');
   } catch (error) {
     console.error(error.message);

@@ -48,7 +48,7 @@ function UserPreferences() {
   },[])
 
   // add userPrefs to database on Click
-  const addPreference = async (preferenceID) => {
+  const addPreference = async (preferenceId) => {
     try {
       const response = await fetch (`http://localhost:3001/user_preferences/add`, {
         method: 'POST',
@@ -59,16 +59,40 @@ function UserPreferences() {
         },
         body: JSON.stringify({
           userId: user,
-          preferenceID: preferenceID,
+          preferenceId: preferenceId,
         }),
       });
       if (response.status === 201) {
         fetchUserPreferences();
       }
     } catch (error) {
-      console.log("Failed to add user preference: ", error.message)
+      console.error("Failed to add user preference: ", error.message)
     }
   }
+
+  // remove preferences from database on Click
+  const removePreferences = async (preferenceId) => {
+    try {
+      const response = await fetch (`http://localhost:3001/user_preferences/remove`, {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: user,
+          preferenceId: preferenceId,
+        }),
+      })
+      if (response.status === 200) {
+        fetchUserPreferences();
+      }
+    } catch (error) {
+      console.error("Failed to remove preference: ", error.message)
+    }
+  }
+
   // only render prefs that are not on user pref list
   const filteredPreferences = preferences.filter(pref => !userPrefs.some(userPref => userPref.name === pref.name));
 
@@ -77,7 +101,7 @@ function UserPreferences() {
       <div>
         My Preferences
         {userPrefs.map((pref) => {
-          return <button key={pref.id}>{pref.name}</button>
+          return <button key={pref.id} onClick={() => removePreferences(pref.id)} >{pref.name}</button>
         })}
       </div>
       <div>
