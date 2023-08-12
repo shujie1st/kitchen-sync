@@ -5,6 +5,7 @@ function UserPreferences() {
   const [userPrefs, setUserPrefs] = useState([])
   // database preferences
   const [preferences, setPreferences] = useState([])
+  const [user, setUser] = useState("")
 
   // fetch user_preferences from database
   const fetchUserPreferences = async () => {
@@ -17,8 +18,8 @@ function UserPreferences() {
           "Content-Type": "application/json",
         }})
       const jsonData = await response.json();
-      console.log("👉jsonData: ", jsonData)
       setUserPrefs(jsonData)
+      setUser(jsonData[0].user_id)
     } catch (error) {
       
     }
@@ -37,7 +38,7 @@ function UserPreferences() {
       const jsonData = await response.json()
       setPreferences(jsonData)
     } catch (error) {
-      console.error(error.message)
+      console.error("Failed to fetch preferences: ", error.message)
     }
   }
 
@@ -46,6 +47,28 @@ function UserPreferences() {
     fetchPreferences();
   },[])
 
+  // add userPrefs to database on Click
+  const addPreference = async (preferenceID) => {
+    try {
+      const response = await fetch (`http://localhost:3001/user_preferences/add`, {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: user,
+          preferenceID: preferenceID,
+        }),
+      });
+      if (response.status === 201) {
+        fetchUserPreferences();
+      }
+    } catch (error) {
+      console.log("Failed to add user preference: ", error.message)
+    }
+  }
   // only render prefs that are not on user pref list
   const filteredPreferences = preferences.filter(pref => !userPrefs.some(userPref => userPref.name === pref.name));
 
@@ -61,7 +84,7 @@ function UserPreferences() {
         All Preferences
         <div>
           {filteredPreferences.map((pref) => {
-            return <button key={pref.id}>{pref.name}</button>
+            return <button key={pref.id} onClick={() => addPreference(pref.id)} >{pref.name}</button>
           })}
         </div>
         

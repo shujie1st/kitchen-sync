@@ -21,12 +21,10 @@ router.get('/', async(req, res) => {
 
 // POST/add a preference
 router.post('/add', async(req, res) => {
-  const { userID, preferenceID } = req.body;
-  console.log("userID: ", userID)
-  console.log("preferenceID: ", preferenceID)
+  const { userId, preferenceID } = req.body;
   try {
     // insert a new record into a user_preferences table
-    await pool.query(`INSERT INTO user_preferences (user_id, preference_id) VALUES ($1, $2)`, [userID, preferenceID]);
+    await pool.query(`INSERT INTO user_preferences (user_id, preference_id) VALUES ($1, $2)`, [userId, preferenceID]);
     res.status(201).send('Preference added successfully');
   } catch (error) {
     console.error(error.message);
