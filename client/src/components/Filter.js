@@ -13,9 +13,9 @@ function Filter(props){
 
 
   useEffect(() => {
-    const getIngredientsList = filteredList.map(ingredientName => {
-    return <button key={ingredientName} onClick={() => handleRemoveIngredient(ingredientName)} >
-            {ingredientName}
+    const getIngredientsList = filteredList.map(item => {
+    return <button key={item.id} onClick={() => handleRemoveIngredient(item.name)} >
+            {item.name}
           </button>
   })
   setIngredientsList(getIngredientsList)
