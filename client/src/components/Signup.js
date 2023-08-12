@@ -66,12 +66,12 @@ function Signup(props) {
             
             <Form.Group controlId="name">
               <Form.Label>First Name</Form.Label>
-              <Form.Control required type="text" placeholder="Enter First Name" ref={inputFirstName} />
+              <Form.Control required type="text" placeholder="Enter first name" ref={inputFirstName} />
             </Form.Group>
 
             <Form.Group controlId="name">
               <Form.Label>Last Name</Form.Label>
-              <Form.Control required type="text" placeholder="Enter Last Name" ref={inputLastName} />
+              <Form.Control required type="text" placeholder="Enter last name" ref={inputLastName} />
             </Form.Group>
 
             <Form.Group controlId="formBasicEmail">

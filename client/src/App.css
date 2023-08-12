@@ -4,14 +4,15 @@
 }
 
 nav {
-	height: 90px;
+	height: 100px;
 	width: 100%;
 	display: flex;
   justify-content: space-between;
   background-color: #97af8f;
-  color: #FFFFFF;
+  color: #ffffff;
   box-shadow: 0 2.5px 2px 0 rgba(0,0,0,.2);
   margin-bottom: 20px;
+  background-image: url("https://www.transparenttextures.com/patterns/food.png");
 }
 
 .nav-text {
@@ -24,7 +25,7 @@ nav {
 
 .nav-right {
   display: flex;
-  margin-right: 20px;
+  margin-right: 25px;
   align-self: flex-end;
   margin-bottom: 10px;
   color: #f6f6f6;
@@ -64,6 +65,11 @@ nav {
   margin-top: 25px;
 }
 
+div .login-card {
+  border: none;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
 .login-card button {
   background-color: #97af8f;
   border: none;
@@ -88,6 +94,11 @@ nav {
   margin-left: 40px;
   margin-top: 25px;
   color: #1b1b1b;
+}
+
+div .signup-card {
+  border: none;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .signup-card button {
@@ -121,7 +132,6 @@ nav {
   border-radius: 10px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  height: fit-content;
 }
 
 .ingredients input {
@@ -190,6 +200,41 @@ nav {
 .preferences button:hover {
   background-color: #97af8f;
   color: #FFFFFF;
+}
+
+div .modal-content {
+  width: 250px;
+  height: 160px;
+  font-size: small;
+  color: #1b1b1b;
+  margin: 100px;
+}
+
+div .modal-header {
+  padding: 10px;
+  color: #62715d;
+}
+
+div .modal-title {
+  font-size: medium;
+}
+
+div .modal-body {
+  padding: 10px;
+}
+
+.modal-footer .btn-secondary {
+  font-size:x-small;
+  background-color: rgb(236, 233, 233);
+  color: #1b1b1b;
+  border: none;
+}
+
+.modal-footer .btn-primary {
+  font-size:x-small;
+  background-color: #97af8f;
+  color: #1b1b1b;
+  border: none;
 }
 
 .recipes {
@@ -308,7 +353,19 @@ input.form-control:focus {
   background-color: white;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
+  background-image: url("https://www.transparenttextures.com/patterns/lined-paper.png");
+ }
+ 
+ .filters div {
+  margin-top: 15px;
+ }
+
+ .filters span {
+  color: #e54ea1;
+  font-weight: bold;
+  margin: 5px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+ }
 
 .filters button {
   font-size: 9px;
@@ -341,21 +398,34 @@ input.form-control:focus {
 }
 
 .profile-message {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  border: 2px solid aqua;
+  padding: 20px;
+  border: none;
   width: 25%;
+  border-radius: 10px;
+  background-color: #f6f6f6;
 }
 
 .user-recipes {
-  border: 2px solid aqua;
+  border: none;
   width: 40%;
+  border-radius: 10px;
+  background-color: #f6f6f6;
 }
 
 .user-preferences {
-  border: 2px solid aqua;
+  border: none;
   width: 35%;
+  border-radius: 10px;
+  background-color: #f6f6f6;
+}
+
+.user-preferences button {
+  border: 1px solid #97af8f;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #62735d;
+  font-size: small;
+  margin: 3px;
 }
 
 .footer {

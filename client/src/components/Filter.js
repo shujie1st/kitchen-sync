@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BiNotepad } from "@react-icons/all-files/bi/BiNotepad"
 
 function Filter(props){
   const { filteredList, removeItemFromFilterList } = props
@@ -24,7 +25,7 @@ function Filter(props){
 
   return ( 
       <section className="filters">
-        Filter component
+        <div><span>Your List</span><BiNotepad /></div>
         {ingredientsList}
       </section>
   );
