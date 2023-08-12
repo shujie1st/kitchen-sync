@@ -46,6 +46,9 @@ function UserPreferences() {
     fetchPreferences();
   },[])
 
+  // only render prefs that are not on user pref list
+  const filteredPreferences = preferences.filter(pref => !userPrefs.some(userPref => userPref.name === pref.name));
+
   return (
     <section className="user-preferences">
       <div>
@@ -57,7 +60,7 @@ function UserPreferences() {
       <div>
         All Preferences
         <div>
-          {preferences.map((pref) => {
+          {filteredPreferences.map((pref) => {
             return <button key={pref.id}>{pref.name}</button>
           })}
         </div>
