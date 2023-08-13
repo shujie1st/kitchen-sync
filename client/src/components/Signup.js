@@ -64,12 +64,12 @@ function Signup(props) {
             
           <Form className='signup-form' onSubmit={handleSubmit}>
             
-            <Form.Group controlId="name">
+            <Form.Group controlId="firstName">
               <Form.Label>First Name</Form.Label>
               <Form.Control required type="text" placeholder="Enter first name" ref={inputFirstName} />
             </Form.Group>
 
-            <Form.Group controlId="name">
+            <Form.Group controlId="lastName">
               <Form.Label>Last Name</Form.Label>
               <Form.Control required type="text" placeholder="Enter last name" ref={inputLastName} />
             </Form.Group>
@@ -84,7 +84,7 @@ function Signup(props) {
               <Form.Control required type="password" placeholder="Password" ref={inputPassword} />
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group controlId="formConfirmPassword">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control required type="password" placeholder="Password" ref={inputConfirmPassword} />
             </Form.Group>
