@@ -77,9 +77,10 @@ function App() {
       console.error(error.message)
     }
   }
+  
   useEffect(() => {
     fetchUserPreferences();
-  },[])
+  },[firstName])
 
     // Function to clear the filteredList
     const clearFilteredList = () => {
