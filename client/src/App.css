@@ -85,6 +85,11 @@ div .login-card {
   margin-bottom: 10px;
 }
 
+#formConfirmPassword {
+  width: 95%;
+  margin-bottom: 10px;
+}
+
 .signup {
   display: flex;
 }
@@ -107,6 +112,16 @@ div .signup-card {
 }
 
 #name {
+  width: 95%;
+  margin-bottom: 10px;
+}
+
+#firstName {
+  width: 95%;
+  margin-bottom: 10px;
+}
+
+#lastName {
   width: 95%;
   margin-bottom: 10px;
 }
@@ -282,7 +297,7 @@ input.form-control:focus {
   height: 100px;
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
@@ -389,41 +404,58 @@ input.form-control:focus {
 }
 
 .profile {
-  margin: 5px;
   display: flex;
   flex-direction: row;
   min-height: 500px;
-  gap: 5px;
-  padding: 5px;
+  padding-left: 20px;
 }
 
 .profile-message {
-  padding: 20px;
   border: none;
-  width: 25%;
-  border-radius: 10px;
-  background-color: #f6f6f6;
+  width: 20%;
 }
 
 .user-recipes {
   border: none;
   width: 40%;
   border-radius: 10px;
-  background-color: #f6f6f6;
+  background-color: transparent;
+  margin-right: 45px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+.user-recipes .recipe-cards {
+  padding-top: 15px;
+}
+
+.user-recipes span {
+  font-weight: bold;
+  margin-left: 125px;
+  color: #e54ea1;
+}
+
+.user-recipes .recipe-card {
+  margin-bottom: 15px;
 }
 
 .user-preferences {
-  border: none;
   width: 35%;
   border-radius: 10px;
-  background-color: #f6f6f6;
+  background-color: transparent;
+  margin-right: 40px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  color: #6084bb;
+  font-weight: bold;
+  padding: 10px;
 }
 
 .user-preferences button {
-  border: 1px solid #97af8f;
+  border: 1px solid #6084bb;
   border-radius: 5px;
   background-color: transparent;
-  color: #62735d;
+  color: #6084bb;
   font-size: small;
   margin: 3px;
 }
