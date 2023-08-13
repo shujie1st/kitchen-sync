@@ -1,5 +1,6 @@
 import { BiNotepad } from "@react-icons/all-files/bi/BiNotepad"
 import FilterControls from "./FilterControls"; // Import the FilterControls component
+import { useEffect } from "react";
 
 
 function Filter(props){
@@ -56,9 +57,12 @@ function Filter(props){
       )
     } else {
       return null;
-    }}
-  
+    }
+  }
 
+  useEffect(() => {
+    fetchUserPreferences();
+  },[]);
 
   return ( 
       <section className="filters">
