@@ -46,7 +46,7 @@ function Filter(props){
     if (firstName) {
       return (
         <div>
-        <h5>My Saved Preferences</h5> 
+        <h6>My Saved Preferences</h6> 
         <div>
           {userPrefs.map(item => {
             return <button key={item.id} onClick={() => handleRemoveUserPrefs(item.id)}>{item.name}</button>

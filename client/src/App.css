@@ -385,6 +385,14 @@ input.form-control:focus {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
  }
 
+ .filters h6 {
+    font: 16px;
+    color: #e54ea1;
+    font-weight: bold;
+    margin: 5px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+ }
+
 .filters button {
   font-size: 9px;
   height: 30px;
