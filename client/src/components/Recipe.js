@@ -1,10 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Col, Container, Form, Row, Modal, Alert } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
 import configData from "../config.json";
 
 function Recipe(props){
+  const { firstName, userPrefs, filteredList } = props
 
   const [recipes, setRecipes] = useState([]);
   const [loadMoreUrl, setLoadMoreUrl] = useState("");
@@ -53,18 +54,24 @@ function Recipe(props){
       })
       .catch(error => console.log(error))
   };
-
-  const searchRecipesByKeywords = (inputKeywords) => {
+  
+  // use useCallback to make sure the the state value inside this function is correct 
+  const searchRecipesByKeywords = useCallback((inputKeywords) => {
     
     // loop over the filteredList to add each item to its correct keywords category   
     let ingredientKeywords = "";
     let preferenceKeywords = "";
-    for (const each of props.filteredList) {
-      if (preferenceNames.includes(each)) {
-        preferenceKeywords += `&health=${each}`;
+    for (const each of filteredList) {
+      if (preferenceNames.includes(each.name)) {
+        preferenceKeywords += `&health=${each.name}`;
       } else {
-        ingredientKeywords += ` ${each}`;
+        ingredientKeywords += ` ${each.name}`;
       }
+    }
+
+    // loop over the userPrefs to add each user pref to preferencesKeywords
+    for (const each of userPrefs) {
+      preferenceKeywords += `&health=${each.name}`;
     }
 
     let inputAndIngredientKeywords = (inputKeywords + ingredientKeywords).trim();
@@ -73,7 +80,7 @@ function Recipe(props){
     setRecipes([]);
     setLoadMoreUrl("");
     loadRecipes(initialUrl);
-  };
+  }, [preferenceNames, filteredList, userPrefs]);
 
   const getFavoriteRecipesForUser = async () => {
     try {
@@ -103,7 +110,7 @@ function Recipe(props){
   
   const favoriteIconClicked = async (recipe) => {
     // if user logged in and click the save recipe icon:
-    if (props.firstName) {
+    if (firstName) {
       setShowModal(false);
       console.log(`${recipe.name} has been clicked`);
     
@@ -197,7 +204,7 @@ function Recipe(props){
       searchRecipesByKeywords(defaultKeywords);
 
       // get saveds recipes data by userId for logged in user
-      if (props.firstName) {
+      if (firstName) {
         getFavoriteRecipesForUser();
       }
     }

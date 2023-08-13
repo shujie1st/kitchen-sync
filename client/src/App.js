@@ -109,7 +109,7 @@ function App() {
                   filteredList={filter}
                   getSelectedPreferences={getSelectedPreferences}
                 />
-                <Recipe firstName={firstName} filteredList={filter} />
+                <Recipe firstName={firstName} filteredList={filter} userPrefs={userPrefs} />
 
               </div>
               <Filter 
