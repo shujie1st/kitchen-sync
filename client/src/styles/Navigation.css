@@ -1,0 +1,56 @@
+nav {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #97af8f;
+  color: #ffffff;
+  box-shadow: 0 2.5px 2px 0 rgba(0, 0, 0, .2);
+  margin-bottom: 20px;
+  background-image: url("https://www.transparenttextures.com/patterns/white-texture.png");
+  /* background-image: url("https://www.transparenttextures.com/patterns/subtle-grey.png"); */
+  /* background-image: url("https://www.transparenttextures.com/patterns/little-pluses.png"); */
+  /* background-image: url("https://www.transparenttextures.com/patterns/diagmonds-light.png"); */
+}
+
+
+.nav-text {
+  margin-left: 50px;
+  font-size: 35px;
+  align-self: center;
+  font-family: 'Comic Neue', cursive;
+  text-shadow: 1.5px 1.5px rgb(114, 106, 106);
+}
+
+.nav-right {
+  display: flex;
+  margin-right: 25px;
+  align-self: flex-end;
+  margin-bottom: 10px;
+  color: #f6f6f6;
+}
+
+.nav-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  row-gap: 10px;
+}
+
+.nav-welcome span {
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+  padding-right: 15px;
+}
+
+.userName {
+  color:antiquewhite;
+  text-decoration: none;
+}
+
+.userName:hover {
+  color: #e54ea1;
+}
+

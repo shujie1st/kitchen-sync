@@ -98,7 +98,11 @@ function UserPreferences() {
        <h5>My Preferences</h5> 
         <div>
           {userPrefs.map((pref) => {
-            return <button key={pref.id} onClick={() => removePreferences(pref.id)} >{pref.name}</button>
+            return <button 
+                      key={pref.id} 
+                      className="filter-btn-remove" 
+                      onClick={() => removePreferences(pref.id)} 
+                      >{pref.name}</button>
           })}
         </div>
       </div>
@@ -108,7 +112,11 @@ function UserPreferences() {
         <h5>All Preferences</h5>
         <div>
           {filteredPreferences.map((pref) => {
-            return <button key={pref.id} onClick={() => addPreference(pref.id)} >{pref.name}</button>
+            return <button 
+                      key={pref.id} 
+                      className="filter-btn-add" 
+                      onClick={() => addPreference(pref.id)} 
+                      >{pref.name}</button>
           })}
         </div>
         
