@@ -29,10 +29,6 @@ function App() {
     localStorage.setItem('firstName', firstName);
   }, [firstName]);
 
-  const clearFilter = () => {
-    setFilter([]);
-  };
-
 
   // callback to get the selectedIngredients list from the Ingredients component
   const getSelectedIngredients = (selectedIngredients) => {
