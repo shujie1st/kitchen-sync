@@ -9,6 +9,7 @@ function Filter(props){
     removeItemFromFilterList, 
     fetchUserPreferences, 
     clearFilteredList,
+    firstName,
   } = props
 
 
@@ -40,6 +41,24 @@ function Filter(props){
     }
   }
 
+  // check if user is logged in and render user's preference list
+  const SavedPreferences = () => {
+    if (firstName) {
+      return (
+        <div>
+        <h5>My Saved Preferences</h5> 
+        <div>
+          {userPrefs.map(item => {
+            return <button key={item.id} onClick={() => handleRemoveUserPrefs(item.id)}>{item.name}</button>
+          })}
+        </div>
+        </div>
+      )
+    } else {
+      return null;
+    }}
+  
+
 
   return ( 
       <section className="filters">
@@ -48,12 +67,7 @@ function Filter(props){
             return <button key={index} onClick={() => handleRemoveIngredient(item)} >{item.name}</button>
           })}
           <FilterControls clearFilteredList={clearFilteredList} />
-        <div>My Saved Preferences</div>
-        <div>
-          {userPrefs.map(item => {
-            return <button key={item.id} onClick={() => handleRemoveUserPrefs(item.id)}>{item.name}</button>
-          })}
-        </div>
+          < SavedPreferences />
       </section>
   );
 }

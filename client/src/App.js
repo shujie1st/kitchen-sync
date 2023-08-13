@@ -113,6 +113,7 @@ function App() {
                 userPrefs={userPrefs}
                 fetchUserPreferences={fetchUserPreferences}
                 clearFilteredList={clearFilteredList}
+                firstName={firstName}
               />
               <div className="App">
             </div>
