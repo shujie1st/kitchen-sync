@@ -1,21 +1,37 @@
-import { useEffect, useState } from "react";
 import { BiNotepad } from "@react-icons/all-files/bi/BiNotepad"
 
 function Filter(props){
-  const { userPrefs, filteredList, removeItemFromFilterList } = props
+  const { userPrefs, filteredList, removeItemFromFilterList, fetchUserPreferences  } = props
 
-  
 
   const handleRemoveIngredient = (item) => {
-    console.log("🔎item: ", item)
     const removeItem = filteredList.filter((element) => element.name !== item.name)
     // callback from App component
     removeItemFromFilterList(removeItem)
   }
 
+  // remove user prefs from database
+  const handleRemoveUserPrefs = async (preferenceId) => {
+    try {
+      const response = await fetch(`http://localhost:3001/user_preferences/remove`, {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          preferenceId: preferenceId,
+        }),
+      })
+      if (response.status === 200) {
+        fetchUserPreferences() 
+      }
+    } catch (error) {
+      console.error("Could not remove user preference from database.", error.message)
+    }
+  }
 
-  console.log("🎈userPrefs: ", userPrefs)
-  console.log("📝filteredList: ", filteredList)
 
   return ( 
       <section className="filters">
@@ -26,7 +42,7 @@ function Filter(props){
         <div>My Saved Preferences</div>
         <div>
           {userPrefs.map(item => {
-            return <button key={item.id}>{item.name}</button>
+            return <button key={item.id} onClick={() => handleRemoveUserPrefs(item.id)}>{item.name}</button>
           })}
         </div>
       </section>
