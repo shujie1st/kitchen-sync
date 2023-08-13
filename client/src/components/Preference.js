@@ -39,7 +39,6 @@ function Preference(props){
     })
   }
 
-  
 
   useEffect(() => {
     fetchPreferences();

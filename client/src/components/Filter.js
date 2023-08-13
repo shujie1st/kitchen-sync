@@ -4,8 +4,10 @@ import { BiNotepad } from "@react-icons/all-files/bi/BiNotepad"
 function Filter(props){
   const { userPrefs, filteredList, removeItemFromFilterList } = props
 
+  
 
   const handleRemoveIngredient = (item) => {
+    console.log("🔎item: ", item)
     const removeItem = filteredList.filter((element) => element.name !== item.name)
     // callback from App component
     removeItemFromFilterList(removeItem)

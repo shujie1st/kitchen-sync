@@ -29,6 +29,10 @@ function App() {
     localStorage.setItem('firstName', firstName);
   }, [firstName]);
 
+  const clearFilter = () => {
+    setFilter([]);
+  };
+
 
   // callback to get the selectedIngredients list from the Ingredients component
   const getSelectedIngredients = (selectedIngredients) => {
@@ -79,10 +83,10 @@ function App() {
     fetchUserPreferences();
   },[])
 
-   // Function to clear the filteredList
-  const clearFilteredList = () => {
-    setFilter([]);
-  };
+    // Function to clear the filteredList
+    const clearFilteredList = () => {
+      setFilter([]);
+    };
 
 
   return (
@@ -92,7 +96,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login setFirstName={setFirstName} />} />
           <Route path="/register" element={<Signup setFirstName={setFirstName} />} />
-          <Route path="/profile" element={<Profile firstName={firstName} />} />
+          <Route path="/profile" element={<Profile firstName={firstName} clearFilteredList={clearFilteredList}/>} />
           <Route path="/" element={
             <main className="container-lg">
               <Ingredient 
@@ -114,10 +118,11 @@ function App() {
                 userPrefs={userPrefs}
               />
               <div className="App">
-                <button onClick={clearFilteredList}>Clear Filtered List</button>
-              </div>
+              <button onClick={clearFilteredList}>Clear Filtered List</button>
+            </div>
             </main> 
           } />
+
         </Routes>
       </BrowserRouter>
       <ScrollButton />
