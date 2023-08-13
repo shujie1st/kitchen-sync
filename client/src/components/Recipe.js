@@ -196,8 +196,10 @@ function Recipe(props){
       const defaultKeywords = 'salad';
       searchRecipesByKeywords(defaultKeywords);
 
-      // get saveds recipes data by userId
-      getFavoriteRecipesForUser();
+      // get saveds recipes data by userId for logged in user
+      if (props.firstName) {
+        getFavoriteRecipesForUser();
+      }
     }
   }, [preferenceNames]);
 
