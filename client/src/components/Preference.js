@@ -5,7 +5,9 @@ function Preference(props){
   
   // database preferences
   const [preferences, setPreferences] = useState([])
-  
+  // database user preferences for filter
+  const [userPrefs, setUserPrefs] = useState([]);
+
   // fetch preferences from database
   const fetchPreferences = async () => {
     try {
@@ -17,6 +19,29 @@ function Preference(props){
     }
   }
 
+  // fetch user preferences from database
+  const fetchUserPreferences = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/user_preferences`, {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const jsonData = await response.json();
+      setUserPrefs(jsonData);
+    } catch (error) {
+      console.error("Could not fetch user preferences from the database.", error.message)
+    }
+  }
+
+  // filter rendering of prefs that not in userPrefs
+  const getFilteredPreferences = () => {
+    return preferences.filter((pref) => !userPrefs.some((userPref) => userPref.id === pref.id));
+  };
+
   // add pref to filter component on click
   const handleClick = (pref) => {
     // check if pref is already selected
@@ -26,27 +51,17 @@ function Preference(props){
     }
   }
 
-  const getAllPreferences = () => {
-    return preferences.map(pref => {
-      console.log("😊pref: ", pref)
-      return (
-      <button 
-        key={pref.id} 
-        onClick={() =>handleClick(pref)}>
-          {pref.name}
-      </button>
-      );
-    })
-  }
-
 
   useEffect(() => {
     fetchPreferences();
-  },[])
+    fetchUserPreferences();
+  },[]) 
 
   return ( 
       <section className="preferences">
-        {getAllPreferences()}
+        {getFilteredPreferences().map((pref) => (
+          <button key={pref.id} onClick={() => handleClick(pref)}>{pref.name}</button>
+        ))}
       </section>
   );
 }
