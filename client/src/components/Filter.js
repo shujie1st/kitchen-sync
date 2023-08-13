@@ -2,31 +2,33 @@ import { useEffect, useState } from "react";
 import { BiNotepad } from "@react-icons/all-files/bi/BiNotepad"
 
 function Filter(props){
-  const { filteredList, removeItemFromFilterList } = props
-  const [ingredientsList, setIngredientsList] = useState([]);
+  const { userPrefs, filteredList, removeItemFromFilterList } = props
 
-  const handleRemoveIngredient = (ingredientName) => {
-    const removedIngredient = filteredList.filter((ingredient) => ingredient !== ingredientName);
-    // callback from App component - send filtered array that does not include the ingredient name
-    removeItemFromFilterList(removedIngredient);
+  
+
+  const handleRemoveIngredient = (item) => {
+    console.log("🔎item: ", item)
+    const removeItem = filteredList.filter((element) => element.name !== item.name)
+    // callback from App component
+    removeItemFromFilterList(removeItem)
   }
 
 
-  useEffect(() => {
-    const getIngredientsList = filteredList.map(item => {
-    return <button key={item.id} onClick={() => handleRemoveIngredient(item.name)} >
-            {item.name}
-          </button>
-  })
-  setIngredientsList(getIngredientsList)
-  },[filteredList, removeItemFromFilterList])
-
-  
+  console.log("🎈userPrefs: ", userPrefs)
+  console.log("📝filteredList: ", filteredList)
 
   return ( 
       <section className="filters">
         <div><span>Your List</span><BiNotepad /></div>
-        {ingredientsList}
+          {filteredList.map((item, index) => {
+            return <button key={index} onClick={() => handleRemoveIngredient(item)} >{item.name}</button>
+          })}
+        <div>My Saved Preferences</div>
+        <div>
+          {userPrefs.map(item => {
+            return <button key={item.id}>{item.name}</button>
+          })}
+        </div>
       </section>
   );
 }
