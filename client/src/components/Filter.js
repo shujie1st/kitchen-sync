@@ -49,7 +49,10 @@ function Filter(props){
         <h5>My Saved Preferences</h5> 
         <div>
           {userPrefs.map(item => {
-            return <button key={item.id} onClick={() => handleRemoveUserPrefs(item.id)}>{item.name}</button>
+            return <button 
+                      key={item.id}
+                      className="filter-btn-remove" 
+                      onClick={() => handleRemoveUserPrefs(item.id)}>{item.name}</button>
           })}
         </div>
         </div>
@@ -58,15 +61,26 @@ function Filter(props){
       return null;
     }}
   
-
+    // only render clear button if filters have been added
+    const renderClearFilter = () => {
+      if (filteredList.length > 0) {
+        return <FilterControls clearFilteredList={clearFilteredList} />
+      } else {
+        return null;
+      }
+    }
 
   return ( 
       <section className="filters">
         <div><span>Your List</span><BiNotepad /></div>
-          {filteredList.map((item, index) => {
-            return <button key={index} onClick={() => handleRemoveIngredient(item)} >{item.name}</button>
+          {filteredList.map((item) => {
+            return <button 
+                      key={item.id} 
+                      className="filter-btn-remove" 
+                      onClick={() => handleRemoveIngredient(item)} 
+                      >{item.name}</button>
           })}
-          <FilterControls clearFilteredList={clearFilteredList} />
+          {renderClearFilter()}
           < SavedPreferences />
       </section>
   );
