@@ -18,20 +18,21 @@ function Preference(props){
   }
 
   // add pref to filter component on click
-  const handleClick = (prefName) => {
+  const handleClick = (pref) => {
     // check if pref is already selected
-    if (!filteredList.includes(prefName)) {
+    if (!filteredList.includes(pref)) {
       // callback to send data  up to parent App component
-      getSelectedPreferences([...filteredList, prefName])
+      getSelectedPreferences([...filteredList, pref])
     }
   }
 
   const getAllPreferences = () => {
     return preferences.map(pref => {
+      console.log("😊pref: ", pref)
       return (
       <button 
         key={pref.id} 
-        onClick={() =>handleClick(pref.name)}>
+        onClick={() =>handleClick(pref)}>
           {pref.name}
       </button>
       );

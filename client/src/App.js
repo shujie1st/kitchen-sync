@@ -18,21 +18,28 @@ function App() {
  // Load filters from local storage on initial render
   const initialFilter = JSON.parse(localStorage.getItem('selectedFilters')) || [];
   const [filter, setFilter] = useState(initialFilter);
-
+  const [userPrefs, setUserPrefs] = useState([]);
 
   // Load logged in user first name from local storage, use "" as initial render if user not logged in
   const loggedinFirstName = localStorage.getItem('firstName') || "";
   const [firstName, setFirstName] = useState(loggedinFirstName);
 
+  useEffect(() => {
+    // Save firstName to local storage whenever it changes
+    localStorage.setItem('firstName', firstName);
+  }, [firstName]);
+
 
   // callback to get the selectedIngredients list from the Ingredients component
   const getSelectedIngredients = (selectedIngredients) => {
+    console.log("👉selectedIngredients: ", selectedIngredients)
     // set ingredients to pass to the Filter prop
     setFilter(selectedIngredients)
   }
 
    // callback to get selectedPreferences list from the Preferences component
   const getSelectedPreferences = (selectedPref) => {
+    console.log("👉selectedPref: ", selectedPref)
     // set preferences to pass to Filtet prop
     // setFilter([...filter, selectedItem])
     setFilter(selectedPref)
@@ -40,20 +47,42 @@ function App() {
 
   // callback to remove ingredients from the Filter component
   const removeItemFromFilterList = (clickedItem) => {
+    console.log("👉clickedItem: ", clickedItem)
     // update ingredient to remove from the Ingredients component
     setFilter(clickedItem)
   }
   
-
   useEffect(() => {
     // Save selectedIngredients to local storage whenever it changes
     localStorage.setItem('selectedFilters', JSON.stringify(filter));
   }, [filter]);
 
+  // fetch userPrefs from database
+  const fetchUserPreferences = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/user_preferences`, {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      const jsonData = await response.json()
+      console.log("👉prefName: ", jsonData)
+      setUserPrefs(jsonData)
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
   useEffect(() => {
-    // Save firstName to local storage whenever it changes
-    localStorage.setItem('firstName', firstName);
-  }, [firstName]);
+    fetchUserPreferences();
+  },[])
+
+   // Function to clear the filteredList
+  const clearFilteredList = () => {
+    setFilter([]);
+  };
 
 
   return (
@@ -82,7 +111,11 @@ function App() {
               <Filter 
                 filteredList={filter}
                 removeItemFromFilterList={removeItemFromFilterList} 
+                userPrefs={userPrefs}
               />
+              <div className="App">
+                <button onClick={clearFilteredList}>Clear Filtered List</button>
+              </div>
             </main> 
           } />
         </Routes>

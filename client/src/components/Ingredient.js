@@ -11,27 +11,31 @@ const Ingredient = (props) => {
   const [filteredResults, setFilteredResults] = useState([]);
 
 
-
   // fetch ingredients from database
   const getIngredients = async () => {
     try {
       const response = await fetch(`http://localhost:3001/ingredients`)
       const jsonData = await response.json()
+      console.log("👉jsonData: ", jsonData)
       setIngredients(jsonData);
     } catch (error) {
       console.error(error.message)
     }
   };
 
+
   // select ingredients for Filter component
-  const handleIngredientClick = (ingredientName) => {
-    // check if ingredient has already been selected
-    if (!filteredList.includes(ingredientName)) {
-    // callback to send data up to parent App component
-    getSelectedIngredients([...filteredList, ingredientName])
-    setIngredientsSearch('')
-    setFilteredResults([])
-  }};
+  const handleIngredientClick = (ingredient) => {
+    console.log("🎈ingredient: ", ingredient)
+    console.log("👉filteredList: ", filteredList)
+    // check if ingredient is on filteredList
+    if (!filteredList.includes(ingredient)) {
+      getSelectedIngredients([...filteredList, ingredient])
+      setIngredientsSearch('')
+      setFilteredResults([]);
+    }
+  }
+
 
   const getIngredientsByCategory = (categoryID) => {
     return ingredients.map(ingredient => {
@@ -39,7 +43,7 @@ const Ingredient = (props) => {
         return (
           <button 
             key={ingredient.id} 
-            onClick={() => handleIngredientClick(ingredient.name)}>
+            onClick={() => handleIngredientClick(ingredient)}>
               {ingredient.name}
           </button>
           );
@@ -64,7 +68,7 @@ const Ingredient = (props) => {
 
   // iterate over searchValue for dropdown search
   const filteredResultsArray = filteredResults.map(item => {
-    return (<div key={item.id} onClick={() => handleIngredientClick(item.name)}>
+    return (<div key={item.id} onClick={() => handleIngredientClick(item)}>
       {item.name}
     </div>
   )})
