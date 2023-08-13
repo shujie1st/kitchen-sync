@@ -451,6 +451,10 @@ input.form-control:focus {
   padding: 10px;
 }
 
+.user-preferences h5 {
+  margin-left: 70px;
+}
+
 .user-preferences button {
   border: 1px solid #6084bb;
   border-radius: 5px;

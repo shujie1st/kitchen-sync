@@ -35,11 +35,11 @@ function Filter(props){
 
   return ( 
       <section className="filters">
-        <div><span>Your List</span><BiNotepad /></div>
+        <div><span>My List</span><BiNotepad /></div>
           {filteredList.map((item, index) => {
             return <button key={index} onClick={() => handleRemoveIngredient(item)} >{item.name}</button>
           })}
-        <div>My Saved Preferences</div>
+        <div><span>My Saved Preferences</span></div>
         <div>
           {userPrefs.map(item => {
             return <button key={item.id} onClick={() => handleRemoveUserPrefs(item.id)}>{item.name}</button>
