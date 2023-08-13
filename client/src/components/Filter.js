@@ -3,7 +3,13 @@ import FilterControls from "./FilterControls"; // Import the FilterControls comp
 
 
 function Filter(props){
-  const { userPrefs, filteredList, removeItemFromFilterList, fetchUserPreferences, clearFilteredList  } = props
+  const { 
+    userPrefs, 
+    filteredList, 
+    removeItemFromFilterList, 
+    fetchUserPreferences, 
+    clearFilteredList,
+  } = props
 
 
   const handleRemoveIngredient = (item) => {

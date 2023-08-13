@@ -30,6 +30,7 @@ function App() {
   }, [firstName]);
 
 
+
   // callback to get the selectedIngredients list from the Ingredients component
   const getSelectedIngredients = (selectedIngredients) => {
     // set ingredients to pass to the Filter prop
@@ -39,7 +40,6 @@ function App() {
    // callback to get selectedPreferences list from the Preferences component
   const getSelectedPreferences = (selectedPref) => {
     // set preferences to pass to Filtet prop
-    // setFilter([...filter, selectedItem])
     setFilter(selectedPref)
   }
 
@@ -49,7 +49,6 @@ function App() {
     setFilter(clickedItem)
   }
 
-  
   
   useEffect(() => {
     // Save selectedIngredients to local storage whenever it changes
@@ -102,6 +101,7 @@ function App() {
                 <Preference 
                   filteredList={filter}
                   getSelectedPreferences={getSelectedPreferences}
+                  userPrefs={userPrefs}
                 />
                 <Recipe firstName={firstName} filteredList={filter} userPrefs={userPrefs} />
 
