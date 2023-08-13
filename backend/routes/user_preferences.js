@@ -21,7 +21,9 @@ router.get('/', async(req, res) => {
 
 // POST/add a preference
 router.post('/add', async(req, res) => {
-  const { userId, preferenceId } = req.body;
+  const { preferenceId } = req.body;
+    const userId = req.session.userId;
+
   try {
     // insert a new record into a user_preferences table
     await pool.query(`INSERT INTO user_preferences (user_id, preference_id) VALUES ($1, $2)`, [userId, preferenceId]);
@@ -34,7 +36,9 @@ router.post('/add', async(req, res) => {
 
 // POST/remove a preference
 router.post('/remove', async(req, res) => {
-  const { userId, preferenceId } = req.body;
+  const { preferenceId } = req.body;
+  const userId = req.session.userId;
+
 
 
   try {
@@ -46,5 +50,6 @@ router.post('/remove', async(req, res) => {
     res.status(500).send('Internal server error');
   }
 })
+
 
 module.exports = router;
