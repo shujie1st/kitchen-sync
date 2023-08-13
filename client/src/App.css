@@ -393,6 +393,18 @@ input.form-control:focus {
   margin-right: 3px;
 }
 
+.clear-filter button {
+  border: 2px solid #637e5a;
+  background-color: white;
+  color: #637e5a;
+  font-weight: bold;
+}
+
+.clear-filter button:hover {
+  background-color: #d0f2c4;
+  color: #1b1b1b;
+}
+
 #scroll-button {
   height: 35px;
   width: 35px;
@@ -455,13 +467,42 @@ input.form-control:focus {
   margin-left: 70px;
 }
 
-.user-preferences button {
+.my-preferences {
+ height: 120px;
+}
+
+.my-preferences button {
+  border-radius: 5px;
+  border: none;
+  background-color: #6084bb;
+  color: white;
+  font-size: small;
+  margin: 3px;
+}
+
+.my-preferences button:hover {
+  border: 1px solid #6084bb;
+  background-color: transparent;
+  color: #6084bb;
+}
+
+.all-preferences {
+  height: 120px;
+ }
+
+.all-preferences button {
   border: 1px solid #6084bb;
   border-radius: 5px;
   background-color: transparent;
   color: #6084bb;
   font-size: small;
   margin: 3px;
+}
+
+.all-preferences button:hover {
+  border: none;
+  background-color: #6084bb;
+  color: white;
 }
 
 .footer {
