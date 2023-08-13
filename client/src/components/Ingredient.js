@@ -16,7 +16,6 @@ const Ingredient = (props) => {
     try {
       const response = await fetch(`http://localhost:3001/ingredients`)
       const jsonData = await response.json()
-      console.log("👉jsonData: ", jsonData)
       setIngredients(jsonData);
     } catch (error) {
       console.error(error.message)
@@ -26,8 +25,6 @@ const Ingredient = (props) => {
 
   // select ingredients for Filter component
   const handleIngredientClick = (ingredient) => {
-    console.log("🎈ingredient: ", ingredient)
-    console.log("👉filteredList: ", filteredList)
     // check if ingredient is on filteredList
     if (!filteredList.includes(ingredient)) {
       getSelectedIngredients([...filteredList, ingredient])

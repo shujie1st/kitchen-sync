@@ -5,7 +5,6 @@ function UserPreferences() {
   const [userPrefs, setUserPrefs] = useState([])
   // database preferences
   const [preferences, setPreferences] = useState([])
-  const [user, setUser] = useState("")
 
   // fetch user_preferences from database
   const fetchUserPreferences = async () => {
@@ -19,7 +18,6 @@ function UserPreferences() {
         }})
       const jsonData = await response.json();
       setUserPrefs(jsonData)
-      setUser(jsonData[0].user_id)
     } catch (error) {
       
     }
@@ -58,7 +56,6 @@ function UserPreferences() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: user,
           preferenceId: preferenceId,
         }),
       });
@@ -81,7 +78,6 @@ function UserPreferences() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: user,
           preferenceId: preferenceId,
         }),
       })

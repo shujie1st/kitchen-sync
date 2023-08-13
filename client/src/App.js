@@ -36,14 +36,12 @@ function App() {
 
   // callback to get the selectedIngredients list from the Ingredients component
   const getSelectedIngredients = (selectedIngredients) => {
-    console.log("👉selectedIngredients: ", selectedIngredients)
     // set ingredients to pass to the Filter prop
     setFilter(selectedIngredients)
   }
 
    // callback to get selectedPreferences list from the Preferences component
   const getSelectedPreferences = (selectedPref) => {
-    console.log("👉selectedPref: ", selectedPref)
     // set preferences to pass to Filtet prop
     // setFilter([...filter, selectedItem])
     setFilter(selectedPref)
@@ -51,10 +49,11 @@ function App() {
 
   // callback to remove ingredients from the Filter component
   const removeItemFromFilterList = (clickedItem) => {
-    console.log("👉clickedItem: ", clickedItem)
     // update ingredient to remove from the Ingredients component
     setFilter(clickedItem)
   }
+
+  
   
   useEffect(() => {
     // Save selectedIngredients to local storage whenever it changes
@@ -73,7 +72,6 @@ function App() {
         }
       })
       const jsonData = await response.json()
-      console.log("👉prefName: ", jsonData)
       setUserPrefs(jsonData)
     } catch (error) {
       console.error(error.message)
@@ -116,6 +114,7 @@ function App() {
                 filteredList={filter}
                 removeItemFromFilterList={removeItemFromFilterList} 
                 userPrefs={userPrefs}
+                fetchUserPreferences={fetchUserPreferences}
               />
               <div className="App">
               <button onClick={clearFilteredList}>Clear Filtered List</button>
