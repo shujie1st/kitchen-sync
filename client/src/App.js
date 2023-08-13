@@ -115,9 +115,9 @@ function App() {
                 removeItemFromFilterList={removeItemFromFilterList} 
                 userPrefs={userPrefs}
                 fetchUserPreferences={fetchUserPreferences}
+                clearFilteredList={clearFilteredList}
               />
               <div className="App">
-              <button onClick={clearFilteredList}>Clear Filtered List</button>
             </div>
             </main> 
           } />

@@ -1,7 +1,9 @@
 import { BiNotepad } from "@react-icons/all-files/bi/BiNotepad"
+import FilterControls from "./FilterControls"; // Import the FilterControls component
+
 
 function Filter(props){
-  const { userPrefs, filteredList, removeItemFromFilterList, fetchUserPreferences  } = props
+  const { userPrefs, filteredList, removeItemFromFilterList, fetchUserPreferences, clearFilteredList  } = props
 
 
   const handleRemoveIngredient = (item) => {
@@ -39,6 +41,7 @@ function Filter(props){
           {filteredList.map((item, index) => {
             return <button key={index} onClick={() => handleRemoveIngredient(item)} >{item.name}</button>
           })}
+          <FilterControls clearFilteredList={clearFilteredList} />
         <div>My Saved Preferences</div>
         <div>
           {userPrefs.map(item => {

@@ -2,9 +2,7 @@ import UserRecipes from "./UserRecipes";
 import UserPreferences from "./UserPreferences";
 import {Link} from "react-router-dom"
 
-
-function Profile(props) {
-const { clearFilteredList } = props
+function Profile() {
   
   return (
     <section className="profile">
