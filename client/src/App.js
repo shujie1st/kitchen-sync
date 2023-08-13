@@ -29,9 +29,6 @@ function App() {
     localStorage.setItem('firstName', firstName);
   }, [firstName]);
 
-  const clearFilter = () => {
-    setFilter([]);
-  };
 
 
   // callback to get the selectedIngredients list from the Ingredients component
@@ -43,7 +40,6 @@ function App() {
    // callback to get selectedPreferences list from the Preferences component
   const getSelectedPreferences = (selectedPref) => {
     // set preferences to pass to Filtet prop
-    // setFilter([...filter, selectedItem])
     setFilter(selectedPref)
   }
 
@@ -53,7 +49,6 @@ function App() {
     setFilter(clickedItem)
   }
 
-  
   
   useEffect(() => {
     // Save selectedIngredients to local storage whenever it changes
@@ -107,6 +102,7 @@ function App() {
                 <Preference 
                   filteredList={filter}
                   getSelectedPreferences={getSelectedPreferences}
+                  userPrefs={userPrefs}
                 />
                 <Recipe firstName={firstName} filteredList={filter} userPrefs={userPrefs} />
 
@@ -116,9 +112,9 @@ function App() {
                 removeItemFromFilterList={removeItemFromFilterList} 
                 userPrefs={userPrefs}
                 fetchUserPreferences={fetchUserPreferences}
+                clearFilteredList={clearFilteredList}
               />
               <div className="App">
-              <button onClick={clearFilteredList}>Clear Filtered List</button>
             </div>
             </main> 
           } />

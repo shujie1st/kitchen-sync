@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 function Preference(props){
-  const { filteredList, getSelectedPreferences } = props;
+  const { filteredList, getSelectedPreferences, userPrefs } = props;
   
   // database preferences
   const [preferences, setPreferences] = useState([])
-  // database user preferences for filter
-  const [userPrefs, setUserPrefs] = useState([]);
 
   // fetch preferences from database
   const fetchPreferences = async () => {
@@ -16,24 +14,6 @@ function Preference(props){
       setPreferences(jsonData)
     } catch (error) {
       console.error(error.message)
-    }
-  }
-
-  // fetch user preferences from database
-  const fetchUserPreferences = async () => {
-    try {
-      const response = await fetch(`http://localhost:3001/user_preferences`, {
-        method: 'GET',
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const jsonData = await response.json();
-      setUserPrefs(jsonData);
-    } catch (error) {
-      console.error("Could not fetch user preferences from the database.", error.message)
     }
   }
 
@@ -54,7 +34,6 @@ function Preference(props){
 
   useEffect(() => {
     fetchPreferences();
-    fetchUserPreferences();
   },[]) 
 
   return ( 
