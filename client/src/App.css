@@ -340,6 +340,14 @@ input.form-control:focus {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
  }
 
+ .filters h6 {
+    font: 16px;
+    color: #e54ea1;
+    font-weight: bold;
+    margin: 5px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+ }
+
 .filters button {
   font-size: 9px;
   height: 30px;
@@ -350,6 +358,7 @@ input.form-control:focus {
   margin-top:10px;
   margin-right: 3px;
 }
+
 
 button.filter-btn-remove {
   font-size: 9px;
@@ -387,6 +396,17 @@ button.filter-btn-add:hover {
   background-color: white;
   color: rgba(226, 90, 90, 0.903);
   border: 1px solid;
+
+.clear-filter button {
+  border: 2px solid #637e5a;
+  background-color: white;
+  color: #637e5a;
+  font-weight: bold;
+}
+
+.clear-filter button:hover {
+  background-color: #d0f2c4;
+  color: #1b1b1b;
 }
 
 #scroll-button {
@@ -447,13 +467,46 @@ button.filter-btn-add:hover {
   padding: 10px;
 }
 
-.user-preferences button {
+.user-preferences h5 {
+  margin-left: 70px;
+}
+
+.my-preferences {
+ height: 120px;
+}
+
+.my-preferences button {
+  border-radius: 5px;
+  border: none;
+  background-color: #6084bb;
+  color: white;
+  font-size: small;
+  margin: 3px;
+}
+
+.my-preferences button:hover {
+  border: 1px solid #6084bb;
+  background-color: transparent;
+  color: #6084bb;
+}
+
+.all-preferences {
+  height: 120px;
+ }
+
+.all-preferences button {
   border: 1px solid #6084bb;
   border-radius: 5px;
   background-color: transparent;
   color: #6084bb;
   font-size: small;
   margin: 3px;
+}
+
+.all-preferences button:hover {
+  border: none;
+  background-color: #6084bb;
+  color: white;
 }
 
 .footer {

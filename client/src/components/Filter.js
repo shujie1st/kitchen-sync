@@ -1,5 +1,6 @@
 import { BiNotepad } from "@react-icons/all-files/bi/BiNotepad"
 import FilterControls from "./FilterControls"; // Import the FilterControls component
+import { useEffect } from "react";
 
 
 function Filter(props){
@@ -46,7 +47,7 @@ function Filter(props){
     if (firstName) {
       return (
         <div>
-        <h5>My Saved Preferences</h5> 
+        <h6>My Saved Preferences</h6> 
         <div>
           {userPrefs.map(item => {
             return <button 
@@ -70,15 +71,17 @@ function Filter(props){
       }
     }
 
+
+  useEffect(() => {
+    fetchUserPreferences();
+  },[]);
+
   return ( 
       <section className="filters">
-        <div><span>Your List</span><BiNotepad /></div>
-          {filteredList.map((item) => {
-            return <button 
-                      key={item.id} 
-                      className="filter-btn-remove" 
-                      onClick={() => handleRemoveIngredient(item)} 
-                      >{item.name}</button>
+        <div><span>My List</span><BiNotepad /></div>
+          {filteredList.map((item, index) => {
+            return <button key={index} onClick={() => handleRemoveIngredient(item)} >{item.name}</button>
+
           })}
           {renderClearFilter()}
           < SavedPreferences />

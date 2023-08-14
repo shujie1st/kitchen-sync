@@ -96,7 +96,7 @@ function UserPreferences() {
     <section className="user-preferences">
       <div>
        <h5>My Preferences</h5> 
-        <div>
+        <div className="my-preferences">
           {userPrefs.map((pref) => {
             return <button 
                       key={pref.id} 
@@ -110,7 +110,7 @@ function UserPreferences() {
       <br/>
       <div>
         <h5>All Preferences</h5>
-        <div>
+        <div className="all-preferences">
           {filteredPreferences.map((pref) => {
             return <button 
                       key={pref.id} 
