@@ -3,13 +3,6 @@
   color: #1b1b1b;
 }
 
-.logout {
-  font-size: small;
-  background-color: #F6F6F6;
-  border: none;
-  border-radius: 5px;
-  color: #1b1b1b;
-}
 
 .login {
   display: flex;

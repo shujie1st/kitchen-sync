@@ -49,12 +49,35 @@ nav {
   padding-right: 15px;
 }
 
-.userName {
+.navMsgLink {
   color:antiquewhite;
   text-decoration: none;
 }
 
-.userName:hover {
-  color: #e54ea1;
+.navMsgLink:hover {
+  color: #b8c9e9;
 }
 
+
+.navBtn {
+  font-size: small;
+  background-color: #F6F6F6;
+  border: none;
+  border-radius: 5px;
+  color: #1b1b1b;
+  margin: 5px;
+}
+
+.navBtn:hover {
+  background-color: #b8c9e9;
+  color: white;
+}
+
+.profile-message {
+  border: none;
+  width: 20%;
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+  padding-right: 10px
+}
