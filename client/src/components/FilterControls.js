@@ -1,6 +1,6 @@
 function FilterControls({ clearFilteredList }) {
   return (
-    <div className="clear-filter">
+    <div className="filter-controls, clear-filter">
       {/* Other controls */}
       <button onClick={clearFilteredList}>Clear Filter</button>
     </div>
