@@ -10,11 +10,13 @@ function Login(props){
   const inputEmail = useRef();
   const inputPassword = useRef();
 
+  const backendPort = process.env.REACT_APP_BACKEND_PORT;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3001/login", {
+      const response = await fetch(`http://localhost:${backendPort}/login`, {
         method: "POST",
         mode: "cors",
         credentials: "include",

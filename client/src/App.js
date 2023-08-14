@@ -24,6 +24,8 @@ function App() {
   const loggedinFirstName = localStorage.getItem('firstName') || "";
   const [firstName, setFirstName] = useState(loggedinFirstName);
 
+  const backendPort = process.env.REACT_APP_BACKEND_PORT;
+
   useEffect(() => {
     // Save firstName to local storage whenever it changes
     localStorage.setItem('firstName', firstName);
@@ -58,7 +60,7 @@ function App() {
   // fetch userPrefs from database
   const fetchUserPreferences = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/user_preferences`, {
+      const response = await fetch(`http://localhost:${backendPort}/user_preferences`, {
         method: 'GET',
         mode: 'cors',
         credentials: 'include',

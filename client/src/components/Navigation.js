@@ -5,10 +5,12 @@ import '../styles/Navigation.css'
 function Navigation(props){
   const navigate = useNavigate();
 
+  const backendPort = process.env.REACT_APP_BACKEND_PORT;
+
   const logout = async () => {
 
     try {
-      const response = await fetch("http://localhost:3001/logout", {
+      const response = await fetch(`http://localhost:${backendPort}/logout`, {
         method: "POST",
         mode: "cors",
         credentials: "include"

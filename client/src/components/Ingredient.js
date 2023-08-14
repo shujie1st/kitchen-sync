@@ -10,11 +10,12 @@ const Ingredient = (props) => {
   // store data from search
   const [filteredResults, setFilteredResults] = useState([]);
 
+  const backendPort = process.env.REACT_APP_BACKEND_PORT;
 
   // fetch ingredients from database
   const getIngredients = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/ingredients`)
+      const response = await fetch(`http://localhost:${backendPort}/ingredients`)
       const jsonData = await response.json()
       setIngredients(jsonData);
     } catch (error) {

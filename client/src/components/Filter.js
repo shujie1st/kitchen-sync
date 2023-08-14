@@ -13,6 +13,7 @@ function Filter(props){
     firstName,
   } = props
 
+  const backendPort = process.env.REACT_APP_BACKEND_PORT;
 
   const handleRemoveIngredient = (item) => {
     const removeItem = filteredList.filter((element) => element.name !== item.name)
@@ -23,7 +24,7 @@ function Filter(props){
   // remove user prefs from database
   const handleRemoveUserPrefs = async (preferenceId) => {
     try {
-      const response = await fetch(`http://localhost:3001/user_preferences/remove`, {
+      const response = await fetch(`http://localhost:${backendPort}/user_preferences/remove`, {
         method: 'POST',
         mode: 'cors',
         credentials: 'include',

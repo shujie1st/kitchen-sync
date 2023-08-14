@@ -20,6 +20,7 @@ function Recipe(props){
   const api = configData.EDAMAM_API;
   const apiId = process.env.REACT_APP_API_ID;
   const apiKeys = process.env.REACT_APP_API_KEYS;
+  const backendPort = process.env.REACT_APP_BACKEND_PORT;
 
   const loadRecipes = (url) => {
     fetch(url)
@@ -84,7 +85,7 @@ function Recipe(props){
 
   const getFavoriteRecipesForUser = async () => {
     try {
-      const response = await fetch("http://localhost:3001/user_recipes", {
+      const response = await fetch(`http://localhost:${backendPort}/user_recipes`, {
         method: "GET",
         mode: "cors",
         credentials: "include",
@@ -123,7 +124,7 @@ function Recipe(props){
             recipeLink: recipe.websiteLink,
           };
 
-          const response = await fetch("http://localhost:3001/user_recipes", {
+          const response = await fetch(`http://localhost:${backendPort}/user_recipes`, {
             method: "POST",
             mode: "cors",
             credentials: "include",
@@ -146,7 +147,7 @@ function Recipe(props){
       else {
         // if this recipe is already saved, send delete request with data about the clicked recipe
         try {
-          const response = await fetch("http://localhost:3001/user_recipes", {
+          const response = await fetch(`http://localhost:${backendPort}/user_recipes`, {
             method: "DELETE",
             mode: "cors",
             credentials: "include",
@@ -176,7 +177,7 @@ function Recipe(props){
   // it will be used to decide if an element in the filteredList is an ingredient or preference 
   const fetchPreferenceNames = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/preferences`, {
+      const response = await fetch(`http://localhost:${backendPort}/preferences`, {
         method: "GET",
         mode: "cors",
         credentials: "include",
