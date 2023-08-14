@@ -385,18 +385,6 @@ button.filter-btn-add:hover {
   border-color: white;
 }
 
-.filter-controls button {
-  border-radius: 5px;
-  background-color: rgba(226, 90, 90, 0.903);
-  color: white;
-}
-
-.filter-controls button:hover {
-  border-color: rgba(226, 90, 90, 0.903);
-  background-color: white;
-  color: rgba(226, 90, 90, 0.903);
-  border: 1px solid;
-
 .clear-filter button {
   border: 2px solid #637e5a;
   background-color: white;
