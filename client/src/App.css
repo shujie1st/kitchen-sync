@@ -388,6 +388,7 @@ button.filter-btn-add:hover {
 .clear-filter button {
   border: 2px solid #637e5a;
   background-color: white;
+  border-radius: 5px;
   color: #637e5a;
   font-weight: bold;
 }
@@ -456,7 +457,7 @@ button.filter-btn-add:hover {
 }
 
 .user-preferences h5 {
-  margin-left: 70px;
+  margin-left: 5%;
 }
 
 .my-preferences {
