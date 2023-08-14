@@ -32,9 +32,9 @@ function Navigation(props){
   // render greeting on home page or link to home on profile page
   const navMessage = () => {
     if (location.pathname === "/") {
-      return <span>Welcome <Link to="/profile" className="userName">{props.firstName}</Link></span>
+      return <span>Welcome <Link to="/profile" className="navMsgLink">{props.firstName}</Link></span>
     } else if (location.pathname === "/profile" || location.pathname === '/login' || location.pathname === '/register') {
-      return <span className="profile-message">Back to <Link style={{color:"#32324D", textDecoration:"none"}} to="/">Homepage</Link></span>
+      return <span className="profile-message">Back to <Link style={{textDecoration:"none"}} to="/" className="navMsgLink">Homepage</Link></span>
     }
   };
   
@@ -54,10 +54,10 @@ function Navigation(props){
           <div className="nav-welcome">
             <span>
               {navMessage()}
-              <button className="logout" onClick={logout}>Logout</button>
+              <button className="navBtn" onClick={logout}>Logout</button>
             </span>
           </div>}
-        {!props.firstName && <span>{navMessage()}<Link style={{color:"#E6EBF2"}} to="/login">Login</Link> / <Link style={{color:"#e6ebf2"}} to="/register">Sign Up</Link></span>}
+        {!props.firstName && <span>{navMessage()}<Link style={{color:"#E6EBF2"}} to="/login"><button className="navBtn">Login</button></Link><Link style={{color:"#e6ebf2"}} to="/register"><button className="navBtn">Sign Up</button></Link></span>}
       </div>
     </nav>
   );
