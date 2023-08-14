@@ -1,9 +1,10 @@
-import {Link} from "react-router-dom";
+import {Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import '../styles/Navigation.css'
 
 function Navigation(props){
   const navigate = useNavigate();
+  const location = useLocation();
 
   const backendPort = process.env.REACT_APP_BACKEND_PORT;
 
@@ -27,6 +28,15 @@ function Navigation(props){
       console.error(error);
     }
   }
+
+  // render greeting on home page or link to home on profile page
+  const navMessage = () => {
+    if (location.pathname === "/") {
+      return <span>Welcome <Link to="/profile" className="userName">{props.firstName}</Link></span>
+    } else if (location.pathname === "/profile" || location.pathname === '/login' || location.pathname === '/register') {
+      return <span className="profile-message">Back to <Link style={{color:"#32324D", textDecoration:"none"}} to="/">Homepage</Link></span>
+    }
+  };
   
   return (
     <nav>
@@ -43,11 +53,11 @@ function Navigation(props){
         {props.firstName && 
           <div className="nav-welcome">
             <span>
-              <span>Welcome <Link to="/profile" className="userName">{props.firstName}</Link></span>
+              {navMessage()}
               <button className="logout" onClick={logout}>Logout</button>
             </span>
           </div>}
-        {!props.firstName && <div><Link style={{color:"#E6EBF2"}} to="/login">Login</Link> / <Link style={{color:"#e6ebf2"}} to="/register">Sign Up</Link></div>}
+        {!props.firstName && <span>{navMessage()}<Link style={{color:"#E6EBF2"}} to="/login">Login</Link> / <Link style={{color:"#e6ebf2"}} to="/register">Sign Up</Link></span>}
       </div>
     </nav>
   );

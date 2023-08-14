@@ -6,7 +6,6 @@ function Profile() {
   
   return (
     <section className="profile">
-      <div className="profile-message"><Link style={{color:"#32324D"}} to="/">Back to Homepage</Link></div>
       <UserRecipes />
       <UserPreferences />
     </section>
