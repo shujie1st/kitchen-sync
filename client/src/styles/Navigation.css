@@ -18,7 +18,11 @@ nav {
   margin-left: 50px;
   font-size: 35px;
   align-self: center;
-  font-family: 'Comic Neue', cursive;
+  font-family: 'Fugaz One', cursive;
+  /* font-family: 'Syncopate', sans-serif; */
+  /* font-family: 'Poiret One', cursive; */
+  /* font-family: 'Ysabeau SC', sans-serif; */
+  /* font-family: 'Comic Neue', cursive; */
   text-shadow: 1.5px 1.5px rgb(114, 106, 106);
 }
 

@@ -30,6 +30,10 @@ function Navigation(props){
     <nav>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap');
       </style>
       <span className="nav-text">KitchenSync</span>
 
