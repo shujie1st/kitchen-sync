@@ -9,11 +9,12 @@ function UserRecipes() {
   const apiByUri = configData.EDAMAM_API_BY_URI;
   const apiId = process.env.REACT_APP_API_ID;
   const apiKeys = process.env.REACT_APP_API_KEYS;
+  const backendPort = process.env.REACT_APP_BACKEND_PORT;
   
   // function to retrieve the saved recipes' URIs for logged in client
   const getSavedRecipeUris = async () => {
     try {
-      const response = await fetch("http://localhost:3001/user_recipes", {
+      const response = await fetch(`http://localhost:${backendPort}/user_recipes`, {
         method: "GET",
         mode: "cors",
         credentials: "include",
@@ -64,7 +65,7 @@ function UserRecipes() {
 
   const deleteSavedRecipe = async (recipe) => {
     try {
-      const response = await fetch("http://localhost:3001/user_recipes", {
+      const response = await fetch(`http://localhost:${backendPort}/user_recipes`, {
         method: "DELETE",
         mode: "cors",
         credentials: "include",

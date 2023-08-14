@@ -6,10 +6,12 @@ function Preference(props){
   // database preferences
   const [preferences, setPreferences] = useState([])
 
+  const backendPort = process.env.REACT_APP_BACKEND_PORT;
+
   // fetch preferences from database
   const fetchPreferences = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/preferences`)
+      const response = await fetch(`http://localhost:${backendPort}/preferences`)
       const jsonData = await response.json()
       setPreferences(jsonData)
     } catch (error) {

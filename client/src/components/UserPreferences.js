@@ -6,10 +6,12 @@ function UserPreferences() {
   // database preferences
   const [preferences, setPreferences] = useState([])
 
+  const backendPort = process.env.REACT_APP_BACKEND_PORT;
+
   // fetch user_preferences from database
   const fetchUserPreferences = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/user_preferences`, {
+      const response = await fetch(`http://localhost:${backendPort}/user_preferences`, {
         method: "GET",
         mode: "cors",
         credentials: "include",
@@ -32,7 +34,7 @@ function UserPreferences() {
   // fetch preferences from database
   const fetchPreferences = async () => {
     try {
-      const response = await fetch (`http://localhost:3001/preferences`);
+      const response = await fetch (`http://localhost:${backendPort}/preferences`);
       const jsonData = await response.json()
       setPreferences(jsonData)
     } catch (error) {
@@ -48,7 +50,7 @@ function UserPreferences() {
   // add userPrefs to database on Click
   const addPreference = async (preferenceId) => {
     try {
-      const response = await fetch (`http://localhost:3001/user_preferences/add`, {
+      const response = await fetch (`http://localhost:${backendPort}/user_preferences/add`, {
         method: 'POST',
         mode: 'cors',
         credentials: 'include',
@@ -70,7 +72,7 @@ function UserPreferences() {
   // remove preferences from database on Click
   const removePreferences = async (preferenceId) => {
     try {
-      const response = await fetch (`http://localhost:3001/user_preferences/remove`, {
+      const response = await fetch (`http://localhost:${backendPort}/user_preferences/remove`, {
         method: 'POST',
         mode: 'cors',
         credentials: 'include',

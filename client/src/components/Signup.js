@@ -13,6 +13,8 @@ function Signup(props) {
   const inputPassword = useRef();
   const inputConfirmPassword = useRef();
 
+  const backendPort = process.env.REACT_APP_BACKEND_PORT;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     
@@ -22,7 +24,7 @@ function Signup(props) {
       setMessage("Passwords don't match");
     } else {
       try {
-        const response = await fetch("http://localhost:3001/register", {
+        const response = await fetch(`http://localhost:${backendPort}/register`, {
           method: "POST",
           mode: "cors",
           credentials: "include",
