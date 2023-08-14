@@ -79,8 +79,12 @@ function Filter(props){
   return ( 
       <section className="filters">
         <div><span>My List</span><BiNotepad /></div>
-          {filteredList.map((item, index) => {
-            return <button key={index} onClick={() => handleRemoveIngredient(item)} >{item.name}</button>
+          {filteredList.map((item) => {
+            return <button 
+                      key={item.id} 
+                      onClick={() => handleRemoveIngredient(item)}
+                      className="filter-btn-remove"
+                    >{item.name}</button>
 
           })}
           {renderClearFilter()}
