@@ -47,9 +47,6 @@ function Login(props){
 
   return ( 
       <section className="login">
-
-        <div className="home-page-link"><Link style={{color:"#32324D"}} to="/">Back to Homepage</Link></div>
-
         <Card className='login-card'>
           <Card.Body>
             {message && <Alert variant="danger">{message}</Alert>}
