@@ -490,3 +490,9 @@ button.filter-btn-add:hover {
   display: flex;
   justify-content: end;
 }
+
+.dropdownSelect:hover {
+  cursor: pointer;
+  font-weight: bold;
+  color: #97af8f;
+}

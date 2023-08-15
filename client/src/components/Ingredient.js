@@ -66,7 +66,7 @@ const Ingredient = (props) => {
 
   // iterate over searchValue for dropdown search
   const filteredResultsArray = filteredResults.map(item => {
-    return (<div key={item.id} onClick={() => handleIngredientClick(item)}>
+    return (<div key={item.id} onClick={() => handleIngredientClick(item)}className="dropdownSelect">
       {item.name}
     </div>
   )})
