@@ -327,7 +327,7 @@ input.form-control:focus {
  }
 
  .filters span {
-  color: #6093f0;
+  color: #6084bb;
   font-weight: bold;
   margin: 5px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -335,7 +335,7 @@ input.form-control:focus {
 
  .filters h6 {
     font: 16px;
-    color: #e54ea1;
+    color: #6084bb;
     font-weight: bold;
     margin: 5px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -406,11 +406,6 @@ button.filter-btn-add:hover {
   flex-direction: row;
   min-height: 500px;
   padding-left: 20px;
-}
-
-.profile-message {
-  border: none;
-  width: 20%;
 }
 
 .user-recipes {
