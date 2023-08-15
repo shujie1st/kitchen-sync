@@ -85,7 +85,7 @@ const Ingredient = (props) => {
         <div>
           <input 
             type="text" 
-            placeholder="Search ingredients"
+            placeholder="Search ingredients..."
             value={ingredientsSearch} 
             onChange={handleChange}>
           </input>
