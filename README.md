@@ -7,6 +7,10 @@ Kitchen Sync as a versatile web application that empowers users to reduce food w
 - A registered user can like and save recipes to their user profile.
 - A registered user can save their prefences
 
+## Screenshots
+
+![](./docs/KitchenSync_Screenshots_01.gif)
+
 ## Contributors
 
 [Shujie Ma](https://github.com/shujie1st)
