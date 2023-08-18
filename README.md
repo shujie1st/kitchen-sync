@@ -11,6 +11,9 @@ Kitchen Sync as a versatile web application that empowers users to reduce food w
 
 ![](./docs/KitchenSync_Screenshots_01.gif)
 
+
+![](./docs/KitchenSync_Screenshots_02.gif)
+
 ## Contributors
 
 [Shujie Ma](https://github.com/shujie1st)
