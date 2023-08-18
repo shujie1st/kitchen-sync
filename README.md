@@ -41,7 +41,7 @@ Kitchen Sync as a versatile web application that empowers users to reduce food w
 
 ## API
 
-This project utilizes the [Recipe Search API](Ahttps://developer.edamam.com/edamam-recipe-api) provided by [Edamam API](https://www.edamam.com/). Edamam's Recipe Search API lets you integrate a recipe database and faceted recipe search into your websites or mobile applications.
+This project utilizes the [Recipe Search API](https://developer.edamam.com/edamam-recipe-api) provided by [Edamam API](https://www.edamam.com/). Edamam's Recipe Search API lets you integrate a recipe database and faceted recipe search into your websites or mobile applications.
 
 ## Setup
 
@@ -51,7 +51,7 @@ Two terminals are required to run this application.
 
 #### Backend Terminal
 
-- `cd backend`
+- `cd kitchen-sync/backend`
 - Run `npm install` to install the dependencies
 - Run `npm start` to launch the server (base URL is localhost:3001).
 
@@ -72,7 +72,7 @@ API_KEY=
 
 #### Client Terminal
 
-- `cd client`
+- `cd kitchen-sync/client`
 - Run `npm install` to install the dependencies
 - Run `npm start` to launch localhost:3000 in your browser
 
