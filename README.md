@@ -9,9 +9,12 @@ Kitchen Sync as a versatile web application that empowers users to reduce food w
 
 ## Screenshots
 
+
+For non-logged in users:
 ![](./docs/KitchenSync_Screenshots_01.gif)
 
 
+For logged in users:
 ![](./docs/KitchenSync_Screenshots_02.gif)
 
 ## Contributors
